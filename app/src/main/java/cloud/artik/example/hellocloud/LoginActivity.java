@@ -26,7 +26,10 @@ import android.support.annotation.Nullable;
 import android.support.customtabs.CustomTabsIntent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import net.openid.appauth.AuthState;
@@ -39,8 +42,8 @@ import net.openid.appauth.TokenResponse;
 import static cloud.artik.example.hellocloud.AuthHelper.INTENT_ARTIKCLOUD_AUTHORIZATION_RESPONSE;
 import static cloud.artik.example.hellocloud.AuthHelper.USED_INTENT;
 
-public class LoginActivity extends Activity {
-    static final String TAG = "LoginActivity";
+public class LoginActivity extends Activity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "LoginActivity";
 
     AuthorizationService mAuthorizationService;
     AuthStateDAL mAuthStateDAL;
@@ -50,23 +53,23 @@ public class LoginActivity extends Activity {
         Log.v(TAG, "::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button button = (Button)findViewById(R.id.btn);
+
+        Spinner spinner = (Spinner) findViewById(R.id.login_spinner);
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
+                R.array.login_spinner, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(this);
 
         mAuthorizationService = new AuthorizationService(this);
         mAuthStateDAL = new AuthStateDAL(this);
+    }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    Log.v(TAG, ": button is clicked.");
-                    doAuth();
-                } catch (Exception e) {
-                    Log.v(TAG, "Run into Exception");
-                    e.printStackTrace();
-                }
-            }
-        });
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+        Log.v(TAG, "item selected");
+    }
 
+    public void onNothingSelected(AdapterView<?> parent){
+        Log.v(TAG, "item not selected");
     }
 
     // File OAuth call with Authorization Code with PKCE method
@@ -91,7 +94,7 @@ public class LoginActivity extends Activity {
     protected void onStart() {
         Log.d(TAG, "Entering onStart ...");
         super.onStart();
-        checkIntent(getIntent());
+        //checkIntent(getIntent());
     }
 
     @Override
@@ -176,4 +179,25 @@ public class LoginActivity extends Activity {
         startActivity(msgActivityIntent);
     }
 
+    public void onBtnClick(View view){
+        switch (view.getId()){
+            case R.id.button_signup:
+                try{
+                    Log.v(TAG, ": sign up button is clicked.");
+                }catch(Exception e){
+                    Log.v(TAG, "Run into Exception");
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.button_signin:
+                try {
+                    Log.v(TAG, ": sign in button is clicked.");
+                    doAuth();
+                } catch (Exception e) {
+                    Log.v(TAG, "Run into Exception");
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
 }

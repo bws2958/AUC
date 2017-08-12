@@ -17,10 +17,9 @@
 package cloud.artik.example.hellocloud;
 
 class Config {
-    static final String CLIENT_ID = "YOUR_CLIENT_ID"; // AKA application ID
-    static final String DEVICE_ID = "YOUR_DEVICE_ID";
+    static final String CLIENT_ID = "042ba26fa4e14cdea03ce466ed4197b6"; // AKA application ID
+    static final String DEVICE_ID = "f6313dd0c6ff4470a6945ad8779f82e1";
 
     // MUST be consistent with "AUTH REDIRECT URL" of your application set up at the developer.artik.cloud
     static final String REDIRECT_URI = "cloud.artik.example.hellocloud://oauth2callback";
-
 }

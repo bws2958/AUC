@@ -32,7 +32,6 @@ class AuthHelper {
 
 
     static AuthorizationRequest createAuthorizationRequest() {
-
         AuthorizationServiceConfiguration serviceConfiguration = new AuthorizationServiceConfiguration(
                 Uri.parse(ARTIKCLOUD_AUTHORIZE_URI),
                 Uri.parse(ARTIKCLOUD_TOKEN_URI),
@@ -45,9 +44,7 @@ class AuthHelper {
                 ResponseTypeValues.CODE,
                 Uri.parse(Config.REDIRECT_URI)
         );
-
         return builder.build();
-
     }
 
 

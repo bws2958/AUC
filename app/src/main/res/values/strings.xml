@@ -4,7 +4,8 @@
     <!--  Login activity -->
     <string name="app_name">HelloArtikCloud</string>
     <string name="hello_world">Please login to ARTIK Cloud</string>
-    <string name="click">login</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
     
     <!-- Message activity -->
     <string name="play_with_messages">Play with ARTIK Cloud</string>
@@ -14,6 +15,10 @@
     <string name="getlatest_btn_txt">Get the latest message</string>
     <string name="getlatest_response_mid">id </string>
     <string name="getlatest_response_mdata">data </string>
+    <string-array name="login_spinner">
+        <item>관리자</item>
+        <item>사용자</item>
+    </string-array>
     
 
 </resources>
