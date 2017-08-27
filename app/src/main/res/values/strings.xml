@@ -2,7 +2,7 @@
 <resources>
 
     <!--  Login activity -->
-    <string name="app_name">HelloArtikCloud</string>
+    <string name="app_name">AUC</string>
     <string name="hello_world">Please login to ARTIK Cloud</string>
     <string name="signin">Sign In</string>
     <string name="signup">Sign Up</string>
@@ -15,7 +15,7 @@
     <string name="getlatest_btn_txt">Get the latest message</string>
     <string name="getlatest_response_mid">id </string>
     <string name="getlatest_response_mdata">data </string>
-    <string-array name="login_spinner">
+    <string-array name="user_mode">
         <item>관리자</item>
         <item>사용자</item>
     </string-array>
