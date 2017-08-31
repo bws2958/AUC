@@ -16,7 +16,7 @@
         <activity android:name="cloud.artik.example.hellocloud.AdminActivity"></activity>
 
         <activity
-            android:name="cloud.artik.example.hellocloud.Intro"
+            android:name="cloud.artik.example.hellocloud.SplashActivity"
             ><!--android:label="@string/app_name"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,5 +47,5 @@
                 <data android:scheme="cloud.artik.example.hellocloud" android:host="oauth2callback"/>
             </intent-filter>
         </activity>
-        </application>
+    </application>
 </manifest>
