@@ -10,12 +10,17 @@ android {
         versionCode 3
         versionName "3.0"
         manifestPlaceholders = [appAuthRedirectScheme: "cloud.artik.example.hellocloud://oauth2callback"]
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    configurations.all {
+        // OkHttp 3.5.0+ includes the websockets API, so we need this to prevent a conflict
+        exclude module: 'okhttp-ws'
     }
 }
 
@@ -24,4 +29,22 @@ dependencies {
     compile 'cloud.artik:artikcloud-java:2.0.7'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    compile ('com.squareup.retrofit2:retrofit:2.1.0'){
+        exclude module: 'com.squareup.okio'
+    }
+    compile ('com.squareup.retrofit2:converter-gson:2.1.0'){
+        exclude module: 'com.squareup.okio'
+    }
+    compile ('com.squareup.retrofit2:adapter-rxjava:2.1.0'){
+        exclude module: 'com.squareup.okio'
+    }
+    compile ('com.squareup.okhttp3:okhttp:3.5.0'){
+        exclude module: 'com.squareup.okio'
+    }
+    compile ('com.squareup.okhttp3:logging-interceptor:3.5.0'){
+        exclude module: 'com.squareup.okio'
+    }
+    compile ('com.squareup.okhttp3:okhttp-urlconnection:3.5.0'){
+        exclude module: 'com.squareup.okio'
+    }
 }

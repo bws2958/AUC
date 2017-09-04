@@ -18,6 +18,11 @@ import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.CaptureActivity;
 
 import cloud.artik.example.hellocloud.Util.DBHelper;
+import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signup;
+import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by HMS on 2017-08-25.
@@ -60,6 +65,23 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
 
                 if (isValidEmail(str_email) == true){
                     toast = "true email";
+
+                    Call<Signup> userDataCall = RestfulAdapter.getInstance().userSignup(str_email, str_pass, str_pass);
+
+                    userDataCall.enqueue(new Callback<Signup>() {
+                        @Override
+                        public void onResponse(Call<Signup> call, Response<Signup> response) {
+                            Log.d(TAG, "response : " + response.body());
+
+                            Log.d(TAG, "Token : " + response.body().getAccessToken());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Signup> call, Throwable t) {
+                            Log.d(TAG, "onFailure");
+                            Toast.makeText(getApplicationContext(), "잠시 후 다시 시도하세요.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }else{
                     toast = "false email";
                 }

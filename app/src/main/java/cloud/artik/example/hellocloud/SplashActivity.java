@@ -23,7 +23,7 @@ public class SplashActivity extends Activity {
     Runnable run1 = new Runnable() {
         @Override
         public void run() {
-            Intent intent1 = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent1 = new Intent(SplashActivity.this, SignInActivity.class);
             startActivity(intent1);
             finish();
             //overridePendintTransition -> effect on fade in, fade out, sequence is important

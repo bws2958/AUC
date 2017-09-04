@@ -1,4 +1,4 @@
-package com.korchid.msg.storage.server.retrofit;
+package cloud.artik.example.hellocloud.Util.Retrofit;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -20,7 +20,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.korchid.msg.storage.server.retrofit.ApiService.API_URL;
 
 /**
  * Created by mac0314 on 2017-01-03.
@@ -32,7 +31,7 @@ public class RestfulAdapter {
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 15;
-    private static final String SERVER_URL = "https://www.korchid.com/"; // Retrofit 2부터 url뒤에 /를 입력
+    private static final String SERVER_URL = "http://13.124.56.85:24680/"; // Retrofit 2부터 url뒤에 /를 입력
     private static OkHttpClient client;
     private static ApiService apiService;
 
@@ -56,7 +55,7 @@ public class RestfulAdapter {
                     .build();
 
             apiService = new Retrofit.Builder()
-                    .baseUrl(API_URL)
+                    .baseUrl(SERVER_URL)
                     .client(client)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())

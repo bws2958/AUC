@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 //import android.widget.Toast;
 
 import net.openid.appauth.AuthState;
@@ -43,6 +44,12 @@ import net.openid.appauth.TokenResponse;
 
 import cloud.artik.example.hellocloud.Util.AuthHelper;
 import cloud.artik.example.hellocloud.Util.AuthStateDAL;
+import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signin;
+import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signup;
+import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static cloud.artik.example.hellocloud.Util.AuthHelper.INTENT_ARTIKCLOUD_AUTHORIZATION_RESPONSE;
 import static cloud.artik.example.hellocloud.Util.AuthHelper.USED_INTENT;
@@ -235,11 +242,32 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                 String input_id = id.getText().toString();
                 String input_pass = pass.getText().toString();
 
+                Call<Signin> userDataCall = RestfulAdapter.getInstance().userSignin(input_id, input_pass);
+
+                userDataCall.enqueue(new Callback<Signin>() {
+                    @Override
+                    public void onResponse(Call<Signin> call, Response<Signin> response) {
+                        Log.d(TAG, "response : " + response.body());
+
+                        Log.d(TAG, "Token : " + response.body().getAccessToken());
+
+                        Log.v(TAG, "signin success");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Signin> call, Throwable t) {
+                        Log.d(TAG, "onFailure");
+                        Toast.makeText(getApplicationContext(), "잠시 후 다시 시도하세요.", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
                 if (str_id.equals(input_id) && str_pass.equals(input_pass)){
-                    Log.v(TAG, "signin success");
+
                     Intent intent = new Intent(this, UserActivity.class);
                     startActivity(intent);
                     finish();
+
                 }else{
                     Log.v(TAG, "signin failed");
                 }
