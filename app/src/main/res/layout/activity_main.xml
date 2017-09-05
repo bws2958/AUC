@@ -9,45 +9,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        >
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-            android:text="list"
-            android:layout_weight="1"/>
+            android:text="list" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:text="AUC"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/textView4"
             android:gravity="center"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"/>
+            android:text="AUC" />
+
+
 
         <cloud.artik.example.hellocloud.Util.CustomEditText
             android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="2dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/btn_search"
             android:orientation="horizontal"
-            android:layout_weight="10"/>
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
             android:id="@+id/btn_search"
-            android:layout_width="25dp"
+            android:layout_width="30dp"
             android:layout_height="25dp"
-            android:scaleType="centerInside"
-            android:padding="0dp"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentEnd="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_search"
-            android:layout_weight="2"/>
+            android:padding="0dp"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:layout_weight="10">
+
     </LinearLayout>
 
 </LinearLayout>

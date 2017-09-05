@@ -3,6 +3,9 @@ package cloud.artik.example.hellocloud.Util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -26,6 +29,7 @@ import cloud.artik.example.hellocloud.R;
 public class CustomEditText extends LinearLayout {
     protected EditText editText;
     protected ImageButton clearTextButton;
+    private View view;
     public interface TextChangedListener extends TextWatcher {
     }
     TextChangedListener editTextListener = null;
@@ -56,6 +60,7 @@ public class CustomEditText extends LinearLayout {
         try {
             // get the text and colors specified using the names in attrs.xml
             hintText = a.getString(R.styleable.EditTextWithDeleteButton_hintText);
+
             deleteButtonRes = a.getResourceId(
                     R.styleable.EditTextWithDeleteButton_deleteButtonRes,
                     R.drawable.ic_clear);
@@ -97,19 +102,28 @@ public class CustomEditText extends LinearLayout {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
-                if (editTextListener != null)
+                if (editTextListener != null){
                     editTextListener.onTextChanged(s, start, before, count);
-
+                    editText.setLayoutParams(new TableLayout.LayoutParams(
+                            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
+                    editText.setGravity(Gravity.CENTER);
+                    editText.setTextSize(15);
+                    editText.setPadding(10, 20, 0, 0);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 if (editTextListener != null)
                     editTextListener.afterTextChanged(s);
-                if (editText.getText().toString().length() > 0)
+                if (editText.getText().toString().length() > 0) {
+                    //editText.setLayoutParams(new TableLayout.LayoutParams(
+                    //        LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
+                    editText.setGravity(Gravity.CENTER_VERTICAL);
                     clearTextButton.setVisibility(View.VISIBLE);
-                else
+                }else {
                     clearTextButton.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -119,7 +133,6 @@ public class CustomEditText extends LinearLayout {
                     editTextListener.beforeTextChanged(s, start, count, after);
 
             }
-
         };
     }
 
@@ -150,6 +163,8 @@ public class CustomEditText extends LinearLayout {
         params.gravity = Gravity.CENTER_VERTICAL;
         clearTextButton.setLayoutParams(params);
         clearTextButton.setBackgroundResource(deleteButtonRes);
+        clearTextButton.setScaleX(0.3f);
+        clearTextButton.setScaleY(0.3f);
         clearTextButton.setVisibility(View.GONE);
         return clearTextButton;
     }
