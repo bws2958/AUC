@@ -160,7 +160,7 @@ public class CustomEditText extends LinearLayout {
         clearTextButton.setPadding(0, 0, 10, 0);
         clearTextButton.setLayoutParams(params);
         clearTextButton.setBackgroundResource(deleteButtonRes);
-        clearTextButton.setScaleX(0.6f);
+        clearTextButton.setScaleX(0.5f);
         clearTextButton.setScaleY(0.4f);
         clearTextButton.setVisibility(View.VISIBLE);
         return clearTextButton;
