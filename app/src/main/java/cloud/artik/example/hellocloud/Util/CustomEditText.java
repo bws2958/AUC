@@ -29,7 +29,7 @@ import cloud.artik.example.hellocloud.R;
 public class CustomEditText extends LinearLayout {
     protected EditText editText;
     protected ImageButton clearTextButton;
-    private View view;
+
     public interface TextChangedListener extends TextWatcher {
     }
     TextChangedListener editTextListener = null;
@@ -84,7 +84,7 @@ public class CustomEditText extends LinearLayout {
                 if (hasFocus && editText.getText().toString().length() > 0)
                     clearTextButton.setVisibility(View.VISIBLE);
                 else
-                    clearTextButton.setVisibility(View.GONE);
+                    clearTextButton.setVisibility(View.VISIBLE);
 
             }
         });
@@ -106,9 +106,8 @@ public class CustomEditText extends LinearLayout {
                     editTextListener.onTextChanged(s, start, before, count);
                     editText.setLayoutParams(new TableLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-                    editText.setGravity(Gravity.CENTER);
-                    editText.setTextSize(15);
-                    editText.setPadding(10, 20, 0, 0);
+                    editText.setGravity(Gravity.LEFT);
+                    editText.setPadding(10, 0, 0, 0);
                 }
             }
 
@@ -116,14 +115,11 @@ public class CustomEditText extends LinearLayout {
             public void afterTextChanged(Editable s) {
                 if (editTextListener != null)
                     editTextListener.afterTextChanged(s);
-                if (editText.getText().toString().length() > 0) {
-                    //editText.setLayoutParams(new TableLayout.LayoutParams(
-                    //        LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
-                    editText.setGravity(Gravity.CENTER_VERTICAL);
-                    clearTextButton.setVisibility(View.VISIBLE);
-                }else {
-                    clearTextButton.setVisibility(View.GONE);
-                }
+
+                editText.setLayoutParams(new TableLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
+                editText.setGravity(Gravity.LEFT);
+                clearTextButton.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -141,31 +137,32 @@ public class CustomEditText extends LinearLayout {
         editText = new EditText(context);
         editText.setRawInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        editText.setTextSize(15);
+        editText.setTextSize(14);
         editText.setLayoutParams(new TableLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f));
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
         editText.setHorizontallyScrolling(false);
+        editText.setPadding(10, 0, 0, 0);
         editText.setVerticalScrollBarEnabled(false);
         editText.setGravity(Gravity.LEFT);
         editText.setBackground(null);
-        editText.setHint("Input text");
-        editText.setEms(10);
+        editText.setHint("search");
         // limit text length
-        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15)});
         return editText;
     }
 
     private ImageButton createImageButton(Context context, int deleteButtonRes) {
         clearTextButton = new ImageButton(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+        params.width = 180;
         params.gravity = Gravity.CENTER_VERTICAL;
+        clearTextButton.setPadding(0, 0, 10, 0);
         clearTextButton.setLayoutParams(params);
         clearTextButton.setBackgroundResource(deleteButtonRes);
-        clearTextButton.setScaleX(0.3f);
-        clearTextButton.setScaleY(0.3f);
-        clearTextButton.setVisibility(View.GONE);
+        clearTextButton.setScaleX(0.6f);
+        clearTextButton.setScaleY(0.4f);
+        clearTextButton.setVisibility(View.VISIBLE);
         return clearTextButton;
     }
 }
