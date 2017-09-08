@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import android.text.Editable;
@@ -143,8 +141,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onBtnClick(View view){
         switch (view.getId()){
             case R.id.btn_list:
-                Intent intent = new Intent(this, L_MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, L_MainActivity.class));
+                overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
+                finish();
                 break;
             case R.id.btn_search:
                 Intent intent1 = new Intent(this, SearchActivity.class);

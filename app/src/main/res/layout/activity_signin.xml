@@ -84,19 +84,19 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/user_signup"
+                android:id="@+id/user_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/signup"
+                android:text="confirm"
                 android:onClick="onBtnClick"/>
 
             <Button
-                android:id="@+id/user_signin"
+                android:id="@+id/user_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/signin"
+                android:text="cancel"
                 android:onClick="onBtnClick"/>
         </LinearLayout>
     </LinearLayout>

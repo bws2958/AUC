@@ -221,19 +221,12 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
     }
     public void onBtnClick(View view){
         switch (view.getId()){
-            // Sign up
-            case R.id.user_signup:
-                try{
-                    Log.v(TAG, ": sign up button is clicked.");
-                    Intent intent = new Intent(this, SignUpActivity.class);
-                    startActivity(intent);
-                }catch(Exception e){
-                    Log.v(TAG, "Run into Exception");
-                    e.printStackTrace();
-                }
+            // Sign in cancel
+            case R.id.user_cancel:
+                finish();
                 break;
-            // Sign in
-            case R.id.user_signin:
+            // Sign in confirm
+            case R.id.user_confirm:
                 SharedPreferences sf = getSharedPreferences(fName, 0);
                 String str_id = sf.getString("id", "");
                 String str_pass = sf.getString("pass", "");
