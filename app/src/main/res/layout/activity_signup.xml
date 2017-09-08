@@ -24,6 +24,7 @@
             android:id="@+id/signup_id"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:ems="10" />
 
     </LinearLayout>
@@ -42,6 +43,7 @@
             android:id="@+id/signup_email"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:ems="10" />
 
     </LinearLayout>
@@ -60,6 +62,7 @@
             android:id="@+id/signup_pass"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:ems="10"
             android:inputType="textPassword" />
     </LinearLayout>
@@ -80,6 +83,7 @@
             android:id="@+id/confirm_pass"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:ems="10"
             android:inputType="textPassword" />
     </LinearLayout>
@@ -98,6 +102,7 @@
         <EditText
             android:id="@+id/device_id"
             android:layout_width="170dp"
+            android:maxLines="1"
             android:layout_height="wrap_content" />
 
         <Button

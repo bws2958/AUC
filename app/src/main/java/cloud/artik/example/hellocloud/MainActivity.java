@@ -27,6 +27,9 @@ import cloud.artik.example.hellocloud.Util.ViewPager.main_pager4;
 import cloud.artik.example.hellocloud.Util.ViewPager.main_pager5;
 import cloud.artik.example.hellocloud.Util.ViewPager.main_pager6;
 
+import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
+import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
+
 /**
  * Created by pc on 2017-09-01.
  */
@@ -145,8 +148,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onBtnClick(View view){
         switch (view.getId()){
             case R.id.btn_list:
-                startActivity(new Intent(this, L_MainActivity.class));
-                overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
+                SharedPreferences sf = getSharedPreferences(USER_DATA, 0);
+                Boolean stat_signin = sf.getBoolean(SIGNIN, false);
+                if(stat_signin == true){ // sign-in success
+                    startActivity(new Intent(this, L_Main_After.class));
+                    overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
+                    Log.d(TAG, "Signin true status");
+                }else{ // sign-in fail
+                    startActivity(new Intent(this, L_Main_Before.class));
+                    overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
+                    Log.d(TAG, "Signin false status");
+                }
                 finish();
                 break;
             case R.id.btn_search:

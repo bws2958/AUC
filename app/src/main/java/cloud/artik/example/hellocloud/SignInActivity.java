@@ -196,7 +196,7 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                             mAuthStateDAL.writeAuthState(authState); //store into persistent storage for use later
                             String text = String.format("Received token response [%s]", tokenResponse.jsonSerializeString());
                             Log.i(TAG, text);
-                            startAdminActivity();
+                            gotoAdminActivity();
                             finish();
                         } else {
                             Context context = getApplicationContext();
@@ -228,6 +228,20 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
     }
     public void onBtnClick(View view){
         switch (view.getId()){
+            // admin_cancel
+            case R.id.admin_cancel:
+                finish();
+                break;
+            // admin_signin
+            case R.id.admin_signin:
+                try {
+                    Log.v(TAG, ": sign in button is clicked.");
+                    doAuth();
+                } catch (Exception e) {
+                    Log.v(TAG, "Run into Exception");
+                    e.printStackTrace();
+                }
+                break;
             // Sign in cancel
             case R.id.user_cancel:
                 finish();
@@ -235,8 +249,6 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
             // Sign in confirm
             case R.id.user_confirm:
                 SharedPreferences sf = getSharedPreferences(fName, 0);
-                String str_id = sf.getString("id", "");
-                String str_pass = sf.getString("pass", "");
                 EditText id = (EditText)findViewById(R.id.signin_id);
                 EditText pass = (EditText)findViewById(R.id.signin_pass);
                 String input_id = id.getText().toString();
@@ -245,6 +257,7 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                 Call<Signin> userDataCall = RestfulAdapter.getInstance().userSignin(input_id, input_pass);
 
                 userDataCall.enqueue(new Callback<Signin>() {
+                    // Sign in success
                     @Override
                     public void onResponse(Call<Signin> call, Response<Signin> response) {
 
@@ -258,6 +271,7 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                             editor.putString(ACCESS_TOKEN, response.body().getAccessToken());
                             editor.putString(REFRESH_TOKEN, response.body().getRefreshToken());
 
+                            gotoMainActivity();
                         }else{
                             editor.putBoolean(SIGNIN, false);
                         }
@@ -265,41 +279,32 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
 
                         editor.apply();
 
-                        Toast.makeText(getApplicationContext(), "로그인 성공.", Toast.LENGTH_LONG).show();
-
                     }
 
+                    // Sign in fail
                     @Override
                     public void onFailure(Call<Signin> call, Throwable t) {
                         Log.d(TAG, "onFailure");
-                        Toast.makeText(getApplicationContext(), "잠시 후 다시 시도하세요.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Network error, 다시 시도하세요.", Toast.LENGTH_LONG).show();
 
                     }
                 });
-
-                if (str_id.equals(input_id) && str_pass.equals(input_pass)){
-
-                    Intent intent = new Intent(this, UserActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }else{
-                    Log.v(TAG, "signin failed");
-                }
-                break;
-            case R.id.admin_signin:
-                try {
-                    Log.v(TAG, ": sign in button is clicked.");
-                    doAuth();
-                } catch (Exception e) {
-                    Log.v(TAG, "Run into Exception");
-                    e.printStackTrace();
-                }
                 break;
         }
     }
-    private void startAdminActivity() {
+    private void gotoAdminActivity() {
         Intent msgActivityIntent = new Intent(this, AdminActivity.class);
         startActivity(msgActivityIntent);
+        overridePendingTransition(R.anim.move_right_in, R.anim.move_left_out);
+        finish();
+    }
+
+    private void gotoMainActivity(){
+        // Sign in success, go back to main activity
+        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.move_right_in, R.anim.move_left_out);
+        finish();
     }
 }

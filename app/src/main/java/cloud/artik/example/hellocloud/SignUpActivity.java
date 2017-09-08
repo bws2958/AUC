@@ -1,7 +1,6 @@
 package cloud.artik.example.hellocloud;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,12 +14,9 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.journeyapps.barcodescanner.CaptureActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import cloud.artik.example.hellocloud.Util.DBHelper;
+import cloud.artik.example.hellocloud.Util.Helper.DBHelper;
+import cloud.artik.example.hellocloud.Util.Helper.KeyLimitHelper;
 import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signup;
 import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
 
@@ -45,6 +41,10 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
     private String fName = "myFile";
     private DBHelper dbHelper;
     private String toast;
+    private EditText id;
+    private EditText pass;
+    private EditText email;
+    private EditText device_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -57,16 +57,21 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
             Log.e(TAG, "SQLite error");
         }
 
+        id = (EditText)findViewById(R.id.signup_id);
+        pass = (EditText)findViewById(R.id.signup_pass);
+        email = (EditText)findViewById(R.id.signup_email);
+        device_id = (EditText)findViewById(R.id.device_id);
+
+        id.setOnKeyListener(new KeyLimitHelper());
+        pass.setOnKeyListener(new KeyLimitHelper());
+        email.setOnKeyListener(new KeyLimitHelper());
+        device_id.setOnKeyListener(new KeyLimitHelper());
     }
 
     public void onBtnClick(View view){
         switch (view.getId()){
             case R.id.button_confirm:
                 Log.v("confirm", "confirm");
-
-                final EditText id = (EditText)findViewById(R.id.signup_id);
-                EditText pass = (EditText)findViewById(R.id.signup_pass);
-                EditText email = (EditText)findViewById(R.id.signup_email);
 
                 final String str_id = id.getText().toString();
                 final String str_pass = pass.getText().toString();
@@ -140,8 +145,7 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
                 toast = "cancelled";
             }else{
                 toast = "scanned : " + result.getContents();
-                EditText editText = (EditText)findViewById(R.id.device_id);
-                editText.setText(result.getContents());
+                device_id.setText(result.getContents());
 
             }
         }else{

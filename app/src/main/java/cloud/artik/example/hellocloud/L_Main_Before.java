@@ -5,35 +5,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signin;
-import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signout;
-import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static cloud.artik.example.hellocloud.Util.Config.ACCESS_TOKEN;
-import static cloud.artik.example.hellocloud.Util.Config.REFRESH_TOKEN;
 import static cloud.artik.example.hellocloud.Util.Config.REQ_SIGNIN;
 import static cloud.artik.example.hellocloud.Util.Config.REQ_SIGNUP;
 import static cloud.artik.example.hellocloud.Util.Config.RES_SUCCESS;
-import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
 import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
 
 /**
  * Created by pc on 2017-09-07.
+ * L_Main_Before mean Left side activity on MainActivity with not Sign-in.
  */
 
-public class L_MainActivity extends Activity{
-    private static final String TAG = "L_MainActivity";
+public class L_Main_Before extends Activity{
+    private static final String TAG = "L_Main_Before";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_left_main);
+        setContentView(R.layout.activity_left_main_before);
     }
 
     public void onBtnClick(View view){
@@ -82,7 +72,6 @@ public class L_MainActivity extends Activity{
             }else if(requestCode == REQ_SIGNIN){
 
             }
-            finish();
         }
     }
 }

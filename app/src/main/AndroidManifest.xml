@@ -15,7 +15,8 @@
         <activity android:name="cloud.artik.example.hellocloud.UserActivity"></activity>
         <activity android:name="cloud.artik.example.hellocloud.AdminActivity"></activity>
         <activity android:name="cloud.artik.example.hellocloud.MainActivity"></activity>
-        <activity android:name=".L_MainActivity"></activity>
+        <activity android:name=".L_Main_Before"></activity>
+        <activity android:name=".L_Main_After"></activity>
         <activity android:name=".SearchActivity"></activity>
 
         <activity

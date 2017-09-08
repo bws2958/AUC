@@ -1,4 +1,4 @@
-package cloud.artik.example.hellocloud.Util;
+package cloud.artik.example.hellocloud.Util.Helper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
