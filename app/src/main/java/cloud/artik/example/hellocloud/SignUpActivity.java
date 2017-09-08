@@ -17,12 +17,24 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.CaptureActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import cloud.artik.example.hellocloud.Util.DBHelper;
 import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signup;
 import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static cloud.artik.example.hellocloud.Util.Config.ACCESS_TOKEN;
+import static cloud.artik.example.hellocloud.Util.Config.DEVICE_ID_LIST;
+import static cloud.artik.example.hellocloud.Util.Config.REFRESH_TOKEN;
+import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
+import static cloud.artik.example.hellocloud.Util.Config.EMAIL;
+import static cloud.artik.example.hellocloud.Util.Config.ID;
+import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
 
 /**
  * Created by HMS on 2017-08-25.
@@ -51,17 +63,16 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
         switch (view.getId()){
             case R.id.button_confirm:
                 Log.v("confirm", "confirm");
-                SharedPreferences sf = getSharedPreferences(fName, 0);
-                SharedPreferences.Editor editor = sf.edit();
-                EditText id = (EditText)findViewById(R.id.signup_id);
+
+                final EditText id = (EditText)findViewById(R.id.signup_id);
                 EditText pass = (EditText)findViewById(R.id.signup_pass);
                 EditText email = (EditText)findViewById(R.id.signup_email);
-                String str_id = id.getText().toString();
-                String str_pass = pass.getText().toString();
-                String str_email = email.getText().toString();
-                editor.putString("id", str_id);
-                editor.putString("pass", str_pass);
-                editor.commit();
+
+                final String str_id = id.getText().toString();
+                final String str_pass = pass.getText().toString();
+                final String str_deviceId = "myBlender";
+                final String str_email = email.getText().toString();
+
 
                 if (isValidEmail(str_email) == true){
                     toast = "true email";
@@ -73,7 +84,28 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
                         public void onResponse(Call<Signup> call, Response<Signup> response) {
                             Log.d(TAG, "response : " + response.body());
 
+                            SharedPreferences sf = getSharedPreferences(USER_DATA, 0);
+                            SharedPreferences.Editor editor = sf.edit();
+
+                            Boolean signinCheck = response.body().getSignin();
+
+                            if(signinCheck){
+                                editor.putBoolean(SIGNIN, true);
+                                editor.putString(ID, str_id);
+                                editor.putString(EMAIL, str_email);
+                                editor.putString(ACCESS_TOKEN, response.body().getAccessToken());
+                                editor.putString(REFRESH_TOKEN, response.body().getRefreshToken());
+                                editor.putString(DEVICE_ID_LIST, str_deviceId);
+                            }else{
+                                editor.putBoolean(SIGNIN, false);
+                            }
                             Log.d(TAG, "Token : " + response.body().getAccessToken());
+
+                            editor.apply();
+
+                            Toast.makeText(getApplicationContext(), "회원가입 성공.", Toast.LENGTH_LONG).show();
+
+                            finish();
                         }
 
                         @Override

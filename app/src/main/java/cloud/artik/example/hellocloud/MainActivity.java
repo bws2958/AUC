@@ -2,12 +2,14 @@ package cloud.artik.example.hellocloud;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TabHost;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cloud.artik.example.hellocloud.Util.CustomEditText;
+
 import cloud.artik.example.hellocloud.Util.ViewPager.ViewPagerAdapter;
 import cloud.artik.example.hellocloud.Util.ViewPager.main_pager1;
 import cloud.artik.example.hellocloud.Util.ViewPager.main_pager2;
@@ -29,6 +32,7 @@ import cloud.artik.example.hellocloud.Util.ViewPager.main_pager6;
  */
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, TabHost.OnTabChangeListener{
+    private static final String TAG = "MainActivity";
     private static final int NUM_PAGES = 3;
     private ViewPager viewPager;
     private TabHost tabHost;

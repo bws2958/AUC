@@ -2,12 +2,15 @@ package cloud.artik.example.hellocloud.Util.Retrofit;
 
 import cloud.artik.example.hellocloud.Util.Retrofit.Response.NUCRecipe;
 import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signin;
+import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signout;
 import cloud.artik.example.hellocloud.Util.Retrofit.Response.Signup;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -30,4 +33,9 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Signin> userSignin(@Field("email") String email,
                             @Field("password") String password);
+
+    @POST("/auc/user/signout")
+    @FormUrlEncoded
+    Call<Signout> userSignout(@Header("Authorization") String accessToken);
+
 }

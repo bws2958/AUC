@@ -20,6 +20,26 @@ public class Config {
     public static final String CLIENT_ID = "042ba26fa4e14cdea03ce466ed4197b6"; // AKA application ID
     public static final String DEVICE_ID = "f6313dd0c6ff4470a6945ad8779f82e1";
 
+
+    // SharedPref
+    public static final String USER_DATA = "USER_DATA";
+    public static final String ID = "USER_ID";
+    public static final String EMAIL = "USER_EMAIL";
+    public static final String SIGNIN = "USER_SIGNIN";
+    public static final String DEVICE_ID_LIST = "USER_DEVICE";
+    public static final String ACCESS_TOKEN = "USER_ACCESS_TOKEN";
+    public static final String REFRESH_TOKEN = "USER_REFRESH_TOKEN";
+
+
+    // Request code
+    public static final int REQ_SIGNUP = 0;
+    public static final int REQ_SIGNIN = 1;
+
+    // Response code
+    public static final int RES_SUCCESS = 0;
+    public static final int RES_FAIL = 1;
+
+
     // MUST be consistent with "AUTH REDIRECT URL" of your application set up at the developer.artik.cloud
     static final String REDIRECT_URI = "cloud.artik.example.hellocloud://oauth2callback";
 }

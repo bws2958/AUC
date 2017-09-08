@@ -53,6 +53,13 @@ import retrofit2.Response;
 
 import static cloud.artik.example.hellocloud.Util.AuthHelper.INTENT_ARTIKCLOUD_AUTHORIZATION_RESPONSE;
 import static cloud.artik.example.hellocloud.Util.AuthHelper.USED_INTENT;
+import static cloud.artik.example.hellocloud.Util.Config.ACCESS_TOKEN;
+import static cloud.artik.example.hellocloud.Util.Config.DEVICE_ID_LIST;
+import static cloud.artik.example.hellocloud.Util.Config.EMAIL;
+import static cloud.artik.example.hellocloud.Util.Config.ID;
+import static cloud.artik.example.hellocloud.Util.Config.REFRESH_TOKEN;
+import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
+import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
 
 public class SignInActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "SignInActivity";
@@ -240,11 +247,26 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                 userDataCall.enqueue(new Callback<Signin>() {
                     @Override
                     public void onResponse(Call<Signin> call, Response<Signin> response) {
-                        Log.d(TAG, "response : " + response.body());
 
+                        SharedPreferences sf = getSharedPreferences(USER_DATA, 0);
+                        SharedPreferences.Editor editor = sf.edit();
+
+                        Boolean signinCheck = response.body().getSignin();
+
+                        if(signinCheck){
+                            editor.putBoolean(SIGNIN, true);
+                            editor.putString(ACCESS_TOKEN, response.body().getAccessToken());
+                            editor.putString(REFRESH_TOKEN, response.body().getRefreshToken());
+
+                        }else{
+                            editor.putBoolean(SIGNIN, false);
+                        }
                         Log.d(TAG, "Token : " + response.body().getAccessToken());
 
-                        Log.v(TAG, "signin success");
+                        editor.apply();
+
+                        Toast.makeText(getApplicationContext(), "로그인 성공.", Toast.LENGTH_LONG).show();
+
                     }
 
                     @Override
