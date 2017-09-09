@@ -19,26 +19,34 @@ import java.util.List;
 
 import cloud.artik.example.hellocloud.Util.CustomEditText;
 
-import cloud.artik.example.hellocloud.Util.ViewPager.ViewPagerAdapter;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager1;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager2;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager3;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager4;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager5;
-import cloud.artik.example.hellocloud.Util.ViewPager.main_pager6;
+import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager1;
+import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager2;
+import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager3;
+import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager4;
+import cloud.artik.example.hellocloud.Util.ViewPagerAdapter;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager1;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager2;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager3;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager4;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager5;
+import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager6;
 
+import static cloud.artik.example.hellocloud.Util.Config.AUC_Suges_str;
 import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
 import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
+import static cloud.artik.example.hellocloud.Util.Config.User_Hot_str;
 
 /**
  * Created by pc on 2017-09-01.
  */
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, TabHost.OnTabChangeListener{
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private static final String TAG = "MainActivity";
     private static final int NUM_PAGES = 3;
-    private ViewPager viewPager;
-    private TabHost tabHost;
+    private ViewPager viewPager1;
+    private ViewPager viewPager2;
+    private TabHost tabHost1;
+    private TabHost tabHost2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +56,55 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initCustomEditText();
         initViewPager();
         initTabHost();
+
     }
 
     private void initTabHost(){
-        tabHost = (TabHost) findViewById(R.id.main_tab1);
-        tabHost.setup();
+        tabHost1 = (TabHost) findViewById(R.id.main_tab1);
+        tabHost1.setup();
 
-        String[] tab_content = {"tab1", "tab2", "tab3", "tab4", "tab5", "tab6"};
+        tabHost2 = (TabHost) findViewById(R.id.main_tab2);
+        tabHost2.setup();
 
-        for(int i=0; i < tab_content.length; i++){
-            TabHost.TabSpec tabSpec;
-            tabSpec = tabHost.newTabSpec(tab_content[i]);
-            tabSpec.setIndicator(tab_content[i]);
-            tabSpec.setContent(new FakeContent(getApplicationContext()));
-            tabHost.addTab(tabSpec);
+        TabHost.TabSpec tabSpec1;
+        TabHost.TabSpec tabSpec2;
+
+        for(int i=0; i < AUC_Suges_str.length; i++){
+            tabSpec1 = tabHost1.newTabSpec(AUC_Suges_str[i]);
+            tabSpec1.setIndicator(AUC_Suges_str[i]);
+            tabSpec1.setContent(new FakeContent(getApplicationContext()));
+            tabHost1.addTab(tabSpec1);
         }
-        tabHost.setOnTabChangedListener(this);
+        tabHost1.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                int item1 = tabHost1.getCurrentTab();
+                viewPager1.setCurrentItem(item1);
+                HorizontalScrollView horizontalScrollView1 = (HorizontalScrollView) findViewById(R.id.main_h_scroll1);
+                View tabView1 = tabHost1.getCurrentTabView();
+                int pos1 = tabView1.getLeft() - (horizontalScrollView1.getWidth() - tabView1.getWidth()) / 2;
+                horizontalScrollView1.smoothScrollTo(pos1, 0);
+            }
+        });
+
+        for(int i=0; i < User_Hot_str.length; i++){
+            tabSpec2 = tabHost2.newTabSpec(User_Hot_str[i]);
+            tabSpec2.setIndicator(User_Hot_str[i]);
+            tabSpec2.setContent(new FakeContent(getApplicationContext()));
+            tabHost2.addTab(tabSpec2);
+        }
+
+        tabHost2.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                int item2 = tabHost2.getCurrentTab();
+                viewPager2.setCurrentItem(item2);
+                HorizontalScrollView horizontalScrollView2 = (HorizontalScrollView) findViewById(R.id.main_h_scroll2);
+                View tabView2 = tabHost2.getCurrentTabView();
+                int pos2 = tabView2.getLeft() - (horizontalScrollView2.getWidth() - tabView2.getWidth()) / 2;
+                horizontalScrollView2.smoothScrollTo(pos2, 0);
+            }
+        });
     }
 
     public class FakeContent implements TabHost.TabContentFactory {
@@ -83,19 +124,30 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void initViewPager(){
-        viewPager = (ViewPager) findViewById(R.id.main_viewpager1);
+        viewPager1 = (ViewPager) findViewById(R.id.main_viewpager1);
+        viewPager2 = (ViewPager) findViewById(R.id.main_viewpager2);
 
-        List<Fragment> list = new ArrayList<Fragment>();
-        list.add(new main_pager1());
-        list.add(new main_pager2());
-        list.add(new main_pager3());
-        list.add(new main_pager4());
-        list.add(new main_pager5());
-        list.add(new main_pager6());
+        List<Fragment> list1 = new ArrayList<Fragment>();
+        list1.add(new view1_pager1());
+        list1.add(new view1_pager2());
+        list1.add(new view1_pager3());
+        list1.add(new view1_pager4());
+        list1.add(new view1_pager5());
+        list1.add(new view1_pager6());
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), list);
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setOnPageChangeListener(this);
+        ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), list1);
+        viewPager1.setAdapter(viewPagerAdapter1);
+        viewPager1.setOnPageChangeListener(this);
+
+        List<Fragment> list2 = new ArrayList<Fragment>();
+        list2.add(new view2_pager1());
+        list2.add(new view2_pager2());
+        list2.add(new view2_pager3());
+        list2.add(new view2_pager4());
+
+        ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getSupportFragmentManager(), list2);
+        viewPager2.setAdapter(viewPagerAdapter2);
+        viewPager2.setOnPageChangeListener(this);
     }
 
     @Override
@@ -105,23 +157,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        tabHost.setCurrentTab(position);
+        tabHost1.setCurrentTab(position);
+        tabHost2.setCurrentTab(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
-    // tabHostListener
-    @Override
-    public void onTabChanged(String tabId) {
-        int item = tabHost.getCurrentTab();
-        viewPager.setCurrentItem(item);
-
-        HorizontalScrollView horizontalScrollView = (HorizontalScrollView) findViewById(R.id.main_h_scroll1);
-        View tabView = tabHost.getCurrentTabView();
-        int pos = tabView.getLeft() - (horizontalScrollView.getWidth() - tabView.getWidth()) / 2;
-        horizontalScrollView.smoothScrollTo(pos, 0);
     }
 
     private void initCustomEditText(){
@@ -155,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
                     Log.d(TAG, "Signin true status");
                 }else{ // sign-in fail
-                    startActivity(new Intent(this, L_Main_Before.class));
+                      startActivity(new Intent(this, L_Main_Before.class));
                     overridePendingTransition(R.anim.move_left_in, R.anim.move_right_out);
                     Log.d(TAG, "Signin false status");
                 }

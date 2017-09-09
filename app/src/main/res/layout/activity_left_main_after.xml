@@ -22,18 +22,19 @@
             android:onClick="onBtnClick"/>
 
         <LinearLayout
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_device_enroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:orientation="vertical"
-            android:onClick="onBtnClick">
+            android:onClick="onBtnClick"
+            >
             <Button
                 android:layout_width="30dp"
                 android:layout_height="25dp"
-                android:background="@drawable/ic_signup"
+                android:background="@drawable/ic_signout"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerInside"/>
 
@@ -41,23 +42,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Sign up"
+                android:text="장비추가"
                 />
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btn_signin"
+            android:id="@+id/btn_my_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:orientation="vertical"
-            android:onClick="onBtnClick">
+            android:onClick="onBtnClick"
+            >
             <Button
                 android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_signin"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_signout"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerInside"/>
 
@@ -65,9 +68,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="Sign in"
+                android:text="내정보"
                 />
+
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="log out"
+                android:text="로그아웃"
                 />
         </LinearLayout>
 

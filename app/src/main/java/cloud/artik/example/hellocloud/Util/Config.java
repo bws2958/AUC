@@ -16,6 +16,13 @@
 
 package cloud.artik.example.hellocloud.Util;
 
+import android.support.v4.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cloud.artik.example.hellocloud.R;
+
 public class Config {
     public static final String CLIENT_ID = "042ba26fa4e14cdea03ce466ed4197b6"; // AKA application ID
     public static final String DEVICE_ID = "f6313dd0c6ff4470a6945ad8779f82e1";
@@ -29,6 +36,10 @@ public class Config {
     public static final String DEVICE_ID_LIST = "USER_DEVICE";
     public static final String ACCESS_TOKEN = "USER_ACCESS_TOKEN";
     public static final String REFRESH_TOKEN = "USER_REFRESH_TOKEN";
+    public static final String AUC_Suges_str [] = new String[]{"콩국수", "총각김치", "그린주스", "애플잼", "청혈주스", "비트레몬"};
+    public static final int AUC_Suges_img [] = new int[]{R.drawable.bean_noodle, R.drawable.solo_kimchi, R.drawable.green_juice, R.drawable.apple_jam, R.drawable.blue_blood, R.drawable.bit_lemon};
+    public static final String User_Hot_str [] = new String[]{"설현", "한지민", "슬기", "아이린"};
+    public static final int User_Hot_img [] = new int[]{R.drawable.sul_hyun, R.drawable.ji_min, R.drawable.seul_gi, R.drawable.irene};
 
 
     // Request code

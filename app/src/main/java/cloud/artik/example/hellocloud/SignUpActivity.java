@@ -126,6 +126,8 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
                 break;
             case R.id.button_cancel:
                 Log.v("confirm", "cancel");
+                startActivity(new Intent(this, L_Main_Before.class));
+                overridePendingTransition(R.anim.move_top_in, R.anim.move_stay);
                 finish();
                 break;
             case R.id.button_device_id:
@@ -171,5 +173,13 @@ public class SignUpActivity extends Activity implements AdapterView.OnItemSelect
             Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
             toast = null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, L_Main_Before.class));
+        overridePendingTransition(R.anim.move_top_in, R.anim.move_stay);
+        finish();
     }
 }

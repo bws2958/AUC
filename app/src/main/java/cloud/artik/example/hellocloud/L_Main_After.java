@@ -33,13 +33,13 @@ public class L_Main_After extends Activity {
                 overridePendingTransition(R.anim.move_right_in, R.anim.move_left_out);
                 finish();
                 break;
-            case R.id.btn_signup:
-                Intent intent = new Intent(this, SignUpActivity.class);
-                startActivityForResult(intent, REQ_SIGNUP);
+            case R.id.btn_device_enroll:
+                startActivity(new Intent(this, Device_Enroll_Activity.class));
+                finish();
                 break;
-            case R.id.btn_signin:
-                Intent intent1 = new Intent(this, SignInActivity.class);
-                startActivityForResult(intent1, REQ_SIGNIN);
+            case R.id.btn_my_info:
+                startActivity(new Intent(this, My_Info_Activity.class));
+                finish();
                 break;
             case R.id.btn_signout:
                 SharedPreferences pref = getSharedPreferences(USER_DATA, 0);

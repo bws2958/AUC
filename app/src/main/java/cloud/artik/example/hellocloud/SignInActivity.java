@@ -230,6 +230,8 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
         switch (view.getId()){
             // admin_cancel
             case R.id.admin_cancel:
+                startActivity(new Intent(this, L_Main_Before.class));
+                overridePendingTransition(R.anim.move_top_in, R.anim.move_stay);
                 finish();
                 break;
             // admin_signin
@@ -244,6 +246,8 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
                 break;
             // Sign in cancel
             case R.id.user_cancel:
+                startActivity(new Intent(this, L_Main_Before.class));
+                overridePendingTransition(R.anim.move_top_in, R.anim.move_stay);
                 finish();
                 break;
             // Sign in confirm
@@ -305,6 +309,14 @@ public class SignInActivity extends Activity implements AdapterView.OnItemSelect
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.move_right_in, R.anim.move_left_out);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, L_Main_Before.class));
+        overridePendingTransition(R.anim.move_top_in, R.anim.move_stay);
         finish();
     }
 }

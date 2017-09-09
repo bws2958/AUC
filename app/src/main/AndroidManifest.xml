@@ -18,6 +18,8 @@
         <activity android:name=".L_Main_Before"></activity>
         <activity android:name=".L_Main_After"></activity>
         <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".My_Info_Activity"></activity>
+        <activity android:name=".Device_Enroll_Activity"></activity>
 
         <activity
             android:name="cloud.artik.example.hellocloud.SplashActivity"

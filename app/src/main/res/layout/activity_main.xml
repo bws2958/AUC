@@ -1,117 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="vertical"
+        android:background="@color/white">
 
-        <Button
-            android:id="@+id/btn_list"
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/ic_list"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:onClick="onBtnClick"/>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="5dp"
-            android:gravity="center"
-            android:text="AUC" />
-
-
-
-
-        <cloud.artik.example.hellocloud.Util.CustomEditText
-            android:id="@+id/editText1"
-            android:layout_width="225dp"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:background="@drawable/border"/>
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_search"
-            android:padding="0dp"
-            android:scaleType="centerInside"
-            android:onClick="onBtnClick"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="AUC의 제안"/>
-    </LinearLayout>
-
-    <TabHost
-        android:id="@+id/main_tab1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
-            <HorizontalScrollView
-                android:id="@+id/main_h_scroll1"
+            <Button
+                android:id="@+id/btn_list"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/ic_list"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:onClick="onBtnClick"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="AUC" />
+
+
+
+
+            <cloud.artik.example.hellocloud.Util.CustomEditText
+                android:id="@+id/editText1"
+                android:layout_width="225dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/border"/>
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_search"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:onClick="onBtnClick"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="AUC의 제안"/>
+        </LinearLayout>
+
+        <TabHost
+            android:id="@+id/main_tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:scrollbars = "none"
-                >
+                android:orientation="vertical">
 
-                <TabWidget
-                    android:id="@android:id/tabs"
+                <HorizontalScrollView
+                    android:id="@+id/main_h_scroll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:scrollbars = "none"
+                    >
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TabWidget>
+                </HorizontalScrollView>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </TabWidget>
-            </HorizontalScrollView>
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/main_viewpager1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        tools:context=".MainActivity">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/main_viewpager1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:context=".MainActivity">
+                    </android.support.v4.view.ViewPager>
 
-                </android.support.v4.view.ViewPager>
-            </FrameLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </TabHost>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Hot"/>
+
 
         </LinearLayout>
 
-    </TabHost>
+        <TabHost
+            android:id="@+id/main_tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-</LinearLayout>
+                <HorizontalScrollView
+                    android:id="@+id/main_h_scroll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:scrollbars = "none"
+                    >
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TabWidget>
+                </HorizontalScrollView>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/main_viewpager2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        tools:context=".MainActivity">
+
+                    </android.support.v4.view.ViewPager>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </TabHost>
+
+    </LinearLayout>
+</ScrollView>

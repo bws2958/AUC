@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class ListAdapter extends BaseAdapter {
     Context context;
     int layout;
-    ArrayList<CustomList> list;
+    ArrayList<CustomViewPagerList> list;
     LayoutInflater inflater;
-    public ListAdapter(Context context, int layout, ArrayList<CustomList> list){
+    public ListAdapter(Context context, int layout, ArrayList<CustomViewPagerList> list){
         this.context = context;
         this.layout = layout;
         this.list = list;

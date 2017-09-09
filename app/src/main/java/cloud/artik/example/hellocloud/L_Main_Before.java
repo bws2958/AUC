@@ -34,22 +34,12 @@ public class L_Main_Before extends Activity{
                 finish();
                 break;
             case R.id.btn_signup:
-                Intent intent = new Intent(this, SignUpActivity.class);
-                startActivityForResult(intent, REQ_SIGNUP);
+                startActivity(new Intent(this, SignUpActivity.class));
+                finish();
                 break;
             case R.id.btn_signin:
-                Intent intent1 = new Intent(this, SignInActivity.class);
-                startActivityForResult(intent1, REQ_SIGNIN);
-                break;
-            case R.id.btn_signout:
-                SharedPreferences pref = getSharedPreferences(USER_DATA, 0);
-                SharedPreferences.Editor editor = pref.edit();
-                // 로그인 데이터 초기화
-                editor.clear();
-                editor.apply();
-
-                Toast.makeText(this, "로그아웃 성공", Toast.LENGTH_LONG).show();
-
+                startActivity(new Intent(this, SignInActivity.class));
+                finish();
                 break;
         }
     }

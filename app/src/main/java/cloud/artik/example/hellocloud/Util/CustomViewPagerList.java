@@ -4,10 +4,10 @@ package cloud.artik.example.hellocloud.Util;
  * Created by HMS on 2017-08-27.
  */
 
-public class CustomList {
+public class CustomViewPagerList {
     String content;
 
-    public CustomList(String content){
+    public CustomViewPagerList(String content){
         this.content = content;
     }
 

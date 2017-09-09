@@ -1,4 +1,4 @@
-package cloud.artik.example.hellocloud.Util.ViewPager;
+package cloud.artik.example.hellocloud.Util;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,8 +18,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.list = list;
     }
     @Override
-    public Fragment getItem (int position){
-        return list.get(position);
+    public Fragment getItem (int position){return list.get(position);
     }
     @Override
     public int getCount(){
