@@ -67,7 +67,7 @@
         </LinearLayout>
 
         <TabHost
-            android:id="@+id/main_tab1"
+            android:id="@+id/main_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -76,7 +76,7 @@
                 android:orientation="vertical">
 
                 <HorizontalScrollView
-                    android:id="@+id/main_h_scroll1"
+                    android:id="@+id/main_h_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fillViewport="true"
@@ -86,11 +86,9 @@
                     <TabWidget
                         android:id="@android:id/tabs"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
                     </TabWidget>
                 </HorizontalScrollView>
-
-
 
                 <FrameLayout
                     android:id="@android:id/tabcontent"
