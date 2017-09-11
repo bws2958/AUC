@@ -66,17 +66,6 @@
                 android:onClick="onBtnClick"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="AUC의 제안"/>
-        </LinearLayout>
-
         <TabHost
             android:id="@+id/main_tab1"
             android:layout_width="match_parent"
@@ -101,64 +90,7 @@
                     </TabWidget>
                 </HorizontalScrollView>
 
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/main_viewpager1"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        tools:context=".MainActivity">
-
-                    </android.support.v4.view.ViewPager>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </TabHost>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Hot"/>
-
-
-        </LinearLayout>
-
-        <TabHost
-            android:id="@+id/main_tab2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <HorizontalScrollView
-                    android:id="@+id/main_h_scroll2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true"
-                    android:scrollbars = "none"
-                    >
-
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </TabWidget>
-                </HorizontalScrollView>
 
                 <FrameLayout
                     android:id="@android:id/tabcontent"
@@ -166,9 +98,10 @@
                     android:layout_height="wrap_content">
 
                     <android.support.v4.view.ViewPager
-                        android:id="@+id/main_viewpager2"
+                        android:id="@+id/main_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="600dp"
+                        android:onClick="onBtnClick"
                         tools:context=".MainActivity">
 
                     </android.support.v4.view.ViewPager>
@@ -176,8 +109,8 @@
                 </FrameLayout>
 
             </LinearLayout>
-
         </TabHost>
+
 
     </LinearLayout>
 </ScrollView>

@@ -36,9 +36,8 @@ public class Config {
     public static final String DEVICE_ID_LIST = "USER_DEVICE";
     public static final String ACCESS_TOKEN = "USER_ACCESS_TOKEN";
     public static final String REFRESH_TOKEN = "USER_REFRESH_TOKEN";
-    public static final String AUC_Suges_str [] = new String[]{"콩국수", "총각김치", "그린주스", "애플잼", "청혈주스", "비트레몬"};
+    public static final String Tab_list [] = new String[]{"블렌더", "원액기", "스마트발효기", "슬로우쿠커", "사용자소식", "이벤트"};
     public static final int AUC_Suges_img [] = new int[]{R.drawable.bean_noodle, R.drawable.solo_kimchi, R.drawable.green_juice, R.drawable.apple_jam, R.drawable.blue_blood, R.drawable.bit_lemon};
-    public static final String User_Hot_str [] = new String[]{"설현", "한지민", "슬기", "아이린"};
     public static final int User_Hot_img [] = new int[]{R.drawable.sul_hyun, R.drawable.ji_min, R.drawable.seul_gi, R.drawable.irene};
 
 

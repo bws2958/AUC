@@ -1,4 +1,4 @@
-package cloud.artik.example.hellocloud.Util.ViewPager1;
+package cloud.artik.example.hellocloud.Util.Tab1_Pager1;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,8 +13,8 @@ import cloud.artik.example.hellocloud.R;
  * Created by pc on 2017-09-07.
  */
 
-public class view1_pager5 extends Fragment {
-    public view1_pager5(){
+public class tab1_pager1_frame6 extends Fragment {
+    public tab1_pager1_frame6(){
 
     }
     @Override
@@ -24,7 +24,7 @@ public class view1_pager5 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_vpg1_frame5, container, false);
+        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_vpg1_frame6, container, false);
         return linearLayout;
     }
 }

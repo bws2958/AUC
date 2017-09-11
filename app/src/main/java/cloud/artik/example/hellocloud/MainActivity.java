@@ -10,8 +10,11 @@ import android.support.v4.view.ViewPager;
 
 import android.text.Editable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
@@ -19,22 +22,21 @@ import java.util.List;
 
 import cloud.artik.example.hellocloud.Util.CustomEditText;
 
-import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager1;
-import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager2;
-import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager3;
-import cloud.artik.example.hellocloud.Util.ViewPager2.view2_pager4;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame1;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame2;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame3;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame4;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame5;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager1.tab1_pager1_frame6;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager2.tab1_pager2_frame1;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager2.tab1_pager2_frame2;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager2.tab1_pager2_frame3;
+import cloud.artik.example.hellocloud.Util.Tab1_Pager2.tab1_pager2_frame4;
 import cloud.artik.example.hellocloud.Util.ViewPagerAdapter;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager1;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager2;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager3;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager4;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager5;
-import cloud.artik.example.hellocloud.Util.ViewPager1.view1_pager6;
 
-import static cloud.artik.example.hellocloud.Util.Config.AUC_Suges_str;
 import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
+import static cloud.artik.example.hellocloud.Util.Config.Tab_list;
 import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
-import static cloud.artik.example.hellocloud.Util.Config.User_Hot_str;
 
 /**
  * Created by pc on 2017-09-01.
@@ -63,15 +65,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         tabHost1 = (TabHost) findViewById(R.id.main_tab1);
         tabHost1.setup();
 
-        tabHost2 = (TabHost) findViewById(R.id.main_tab2);
-        tabHost2.setup();
 
         TabHost.TabSpec tabSpec1;
-        TabHost.TabSpec tabSpec2;
 
-        for(int i=0; i < AUC_Suges_str.length; i++){
-            tabSpec1 = tabHost1.newTabSpec(AUC_Suges_str[i]);
-            tabSpec1.setIndicator(AUC_Suges_str[i]);
+        for(int i=0; i < Tab_list.length; i++){
+            tabSpec1 = tabHost1.newTabSpec(Tab_list[i]);
+            tabSpec1.setIndicator(Tab_list[i]);
             tabSpec1.setContent(new FakeContent(getApplicationContext()));
             tabHost1.addTab(tabSpec1);
         }
@@ -84,25 +83,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 View tabView1 = tabHost1.getCurrentTabView();
                 int pos1 = tabView1.getLeft() - (horizontalScrollView1.getWidth() - tabView1.getWidth()) / 2;
                 horizontalScrollView1.smoothScrollTo(pos1, 0);
-            }
-        });
-
-        for(int i=0; i < User_Hot_str.length; i++){
-            tabSpec2 = tabHost2.newTabSpec(User_Hot_str[i]);
-            tabSpec2.setIndicator(User_Hot_str[i]);
-            tabSpec2.setContent(new FakeContent(getApplicationContext()));
-            tabHost2.addTab(tabSpec2);
-        }
-
-        tabHost2.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                int item2 = tabHost2.getCurrentTab();
-                viewPager2.setCurrentItem(item2);
-                HorizontalScrollView horizontalScrollView2 = (HorizontalScrollView) findViewById(R.id.main_h_scroll2);
-                View tabView2 = tabHost2.getCurrentTabView();
-                int pos2 = tabView2.getLeft() - (horizontalScrollView2.getWidth() - tabView2.getWidth()) / 2;
-                horizontalScrollView2.smoothScrollTo(pos2, 0);
             }
         });
     }
@@ -124,30 +104,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void initViewPager(){
-        viewPager1 = (ViewPager) findViewById(R.id.main_viewpager1);
-        viewPager2 = (ViewPager) findViewById(R.id.main_viewpager2);
+        viewPager1 = (ViewPager) findViewById(R.id.main_viewpager);
+//        viewPager2 = (ViewPager) findViewById(R.id.main_viewpager2);
 
         List<Fragment> list1 = new ArrayList<Fragment>();
-        list1.add(new view1_pager1());
-        list1.add(new view1_pager2());
-        list1.add(new view1_pager3());
-        list1.add(new view1_pager4());
-        list1.add(new view1_pager5());
-        list1.add(new view1_pager6());
+        list1.add(new view_tab1());
+        list1.add(new view_tab2());
+        list1.add(new view_tab3());
+        list1.add(new view_tab4());
+        list1.add(new view_tab5());
+        list1.add(new view_tab6());
 
         ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), list1);
         viewPager1.setAdapter(viewPagerAdapter1);
         viewPager1.setOnPageChangeListener(this);
-
-        List<Fragment> list2 = new ArrayList<Fragment>();
-        list2.add(new view2_pager1());
-        list2.add(new view2_pager2());
-        list2.add(new view2_pager3());
-        list2.add(new view2_pager4());
-
-        ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getSupportFragmentManager(), list2);
-        viewPager2.setAdapter(viewPagerAdapter2);
-        viewPager2.setOnPageChangeListener(this);
     }
 
     @Override
@@ -157,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        tabHost1.setCurrentTab(position);
-        tabHost2.setCurrentTab(position);
+//        tabHost1.setCurrentTab(position);
+//        tabHost2.setCurrentTab(position);
     }
 
     @Override
@@ -207,6 +177,244 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 Intent intent1 = new Intent(this, SearchActivity.class);
                 startActivity(intent1);
                 break;
+//            case R.id.main_viewpager1:
+//                break;
+//            case R.id.main_viewpager2:
+//                break;
+        }
+    }
+
+    public static class view_tab1 extends Fragment {
+        private ViewPager viewPager1;
+        private ViewPager viewPager2;
+        public view_tab1(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+
+            List<Fragment> list1 = new ArrayList<Fragment>();
+            list1.add(new tab1_pager1_frame1());
+            list1.add(new tab1_pager1_frame2());
+            list1.add(new tab1_pager1_frame3());
+            list1.add(new tab1_pager1_frame4());
+            list1.add(new tab1_pager1_frame5());
+            list1.add(new tab1_pager1_frame6());
+
+            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+            viewPager1.setAdapter(viewPagerAdapter1);
+
+            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+
+            List<Fragment> list2 = new ArrayList<Fragment>();
+            list2.add(new tab1_pager2_frame1());
+            list2.add(new tab1_pager2_frame2());
+            list2.add(new tab1_pager2_frame3());
+            list2.add(new tab1_pager2_frame4());
+
+            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+            viewPager2.setAdapter(viewPagerAdapter2);
+
+            return linearLayout;
+        }
+    }
+
+    public static class view_tab1_pager1 extends Fragment{
+        private ViewPager viewPager;
+        public view_tab1_pager1(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager1);
+
+//            List<Fragment> list = new ArrayList<Fragment>();
+//            list.add(new tab1_pager1_frame1());
+//            list.add(new tab1_pager1_frame2());
+//            list.add(new tab1_pager1_frame3());
+//            list.add(new tab1_pager1_frame4());
+//            list.add(new tab1_pager1_frame5());
+//            list.add(new tab1_pager1_frame6());
+
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list);
+//            viewPager.setAdapter(viewPagerAdapter);
+
+            return view;
+        }
+    }
+
+    public static class view_tab1_pager2 extends Fragment{
+        private ViewPager viewPager;
+        public view_tab1_pager2(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager2);
+
+            List<Fragment> list = new ArrayList<Fragment>();
+            list.add(new tab1_pager2_frame1());
+            list.add(new tab1_pager2_frame2());
+            list.add(new tab1_pager2_frame3());
+            list.add(new tab1_pager2_frame4());
+
+            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list);
+            viewPager.setAdapter(viewPagerAdapter);
+
+            return view;
+        }
+    }
+
+    public static class view_tab2 extends Fragment {
+        private ViewPager viewPager;
+        public view_tab2(){}
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.activity_main, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager);
+
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager2_frame1());
+//            list1.add(new tab1_pager2_frame2());
+//            list1.add(new tab1_pager2_frame3());
+//            list1.add(new tab1_pager2_frame4());
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager.setAdapter(viewPagerAdapter);
+            return view;
+        }
+    }
+
+    public static class view_tab3 extends Fragment {
+        private ViewPager viewPager;
+        public view_tab3(){}
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager1);
+
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager2_frame1());
+//            list1.add(new tab1_pager2_frame2());
+//            list1.add(new tab1_pager2_frame3());
+//            list1.add(new tab1_pager2_frame4());
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager.setAdapter(viewPagerAdapter);
+            return view;
+        }
+    }
+
+    public static class view_tab4 extends Fragment {
+        private ViewPager viewPager;
+        public view_tab4(){}
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager1);
+
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager2_frame1());
+//            list1.add(new tab1_pager2_frame2());
+//            list1.add(new tab1_pager2_frame3());
+//            list1.add(new tab1_pager2_frame4());
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager.setAdapter(viewPagerAdapter);
+            return view;
+        }
+    }
+
+    public static class view_tab5 extends Fragment {
+        private ViewPager viewPager;
+        public view_tab5(){}
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager1);
+
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager2_frame1());
+//            list1.add(new tab1_pager2_frame2());
+//            list1.add(new tab1_pager2_frame3());
+//            list1.add(new tab1_pager2_frame4());
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager.setAdapter(viewPagerAdapter);
+            return view;
+        }
+    }
+
+    public static class view_tab6 extends Fragment {
+        private ViewPager viewPager;
+        public view_tab6(){}
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.main_vpg1, container, false);
+
+            viewPager = (ViewPager) view.findViewById(R.id.main_viewpager1);
+
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager2_frame1());
+//            list1.add(new tab1_pager2_frame2());
+//            list1.add(new tab1_pager2_frame3());
+//            list1.add(new tab1_pager2_frame4());
+//            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager.setAdapter(viewPagerAdapter);
+            return view;
         }
     }
 }
