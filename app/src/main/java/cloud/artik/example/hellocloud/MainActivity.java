@@ -3,6 +3,7 @@ package cloud.artik.example.hellocloud;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 
@@ -21,17 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cloud.artik.example.hellocloud.Util.CustomEditText;
-
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame1;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame2;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame3;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame4;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame5;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager1.tab1_pager1_frame6;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager2.tab1_pager2_frame1;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager2.tab1_pager2_frame2;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager2.tab1_pager2_frame3;
-import cloud.artik.example.hellocloud.Util.Tab.Tab1.Tab1_Pager2.tab1_pager2_frame4;
 import cloud.artik.example.hellocloud.Util.ViewPagerAdapter;
 
 import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
@@ -107,11 +98,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         List<Fragment> list = new ArrayList<Fragment>();
         list.add(new view_tab1());
-        list.add(new view_tab2());
-        list.add(new view_tab3());
-        list.add(new view_tab4());
-        list.add(new view_tab5());
-        list.add(new view_tab6());
+//        list.add(new view_tab2());
+//        list.add(new view_tab3());
+//        list.add(new view_tab4());
+//        list.add(new view_tab5());
+//        list.add(new view_tab6());
 
         ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), list);
         viewPager.setAdapter(viewPagerAdapter1);
@@ -219,226 +210,481 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
             return linearLayout;
         }
+
+        public static class tab1_pager1_frame1 extends Fragment {
+            Context context;
+            public tab1_pager1_frame1(){
+
+            }
+
+
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.bean_noodle);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=133");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.bean_noodle);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager1_frame2 extends Fragment {
+            public tab1_pager1_frame2() {
+
+            }
+
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.solo_kimchi);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=134");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.solo_kimchi);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager1_frame3 extends Fragment {
+            public tab1_pager1_frame3(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.green_juice);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=121&page=3");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.green_juice);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager1_frame4 extends Fragment {
+            public tab1_pager1_frame4(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.apple_jam);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=117&page=3");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.apple_jam);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager1_frame5 extends Fragment {
+            public tab1_pager1_frame5(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.blue_blood);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=115&page=3");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.blue_blood);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager1_frame6 extends Fragment {
+            public tab1_pager1_frame6(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+                imageView.setImageResource(R.drawable.bit_lemon);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=113&page=3");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+
+//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
+//        button.setBackgroundResource(R.drawable.bit_lemon);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager2_frame1 extends Fragment {
+            public tab1_pager2_frame1(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+//        imageView.setImageResource(R.drawable.seul_gi);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager2_frame2 extends Fragment {
+            public tab1_pager2_frame2(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+//        imageView.setImageResource(R.drawable.seul_gi);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager2_frame3 extends Fragment {
+            public tab1_pager2_frame3(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+//        imageView.setImageResource(R.drawable.seul_gi);
+                return linearLayout;
+            }
+        }
+        public static class tab1_pager2_frame4 extends Fragment {
+            public tab1_pager2_frame4(){
+
+            }
+            @Override
+            public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+            }
+
+            @Override
+            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+
+//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
+//        imageView.setImageResource(R.drawable.seul_gi);
+                return linearLayout;
+            }
+        }
+
     }
+    //view_tab2~6
+//    public static class view_tab2 extends Fragment {
+//        private ViewPager viewPager1;
+//        private ViewPager viewPager2;
+//
+//        public view_tab2(){
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+////            View view = inflater.inflate(R.layout.main_tab1, container, false);
+//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+//
+//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+//
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager1_frame1());
+//            list1.add(new tab1_pager1_frame2());
+//            list1.add(new tab1_pager1_frame3());
+//            list1.add(new tab1_pager1_frame4());
+//            list1.add(new tab1_pager1_frame5());
+//            list1.add(new tab1_pager1_frame6());
+//
+//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager1.setAdapter(viewPagerAdapter1);
+//
+//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+//
+//            List<Fragment> list2 = new ArrayList<Fragment>();
+//            list2.add(new tab1_pager2_frame1());
+//            list2.add(new tab1_pager2_frame2());
+//            list2.add(new tab1_pager2_frame3());
+//            list2.add(new tab1_pager2_frame4());
+//
+//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+//            viewPager2.setAdapter(viewPagerAdapter2);
+//
+//            return linearLayout;
+//        }
+//    }
+//    public static class view_tab3 extends Fragment {
+//        private ViewPager viewPager1;
+//        private ViewPager viewPager2;
+//        public view_tab3(){
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+////            View view = inflater.inflate(R.layout.main_tab1, container, false);
+//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+//
+//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+//
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager1_frame1());
+//            list1.add(new tab1_pager1_frame2());
+//            list1.add(new tab1_pager1_frame3());
+//            list1.add(new tab1_pager1_frame4());
+//            list1.add(new tab1_pager1_frame5());
+//            list1.add(new tab1_pager1_frame6());
+//
+//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager1.setAdapter(viewPagerAdapter1);
+//
+//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+//
+//            List<Fragment> list2 = new ArrayList<Fragment>();
+//            list2.add(new tab1_pager2_frame1());
+//            list2.add(new tab1_pager2_frame2());
+//            list2.add(new tab1_pager2_frame3());
+//            list2.add(new tab1_pager2_frame4());
+//
+//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+//            viewPager2.setAdapter(viewPagerAdapter2);
+//
+//            return linearLayout;
+//        }
+//    }
+//    public static class view_tab4 extends Fragment {
+//        private ViewPager viewPager1;
+//        private ViewPager viewPager2;
+//        public view_tab4(){
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+////            View view = inflater.inflate(R.layout.main_tab1, container, false);
+//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+//
+//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+//
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager1_frame1());
+//            list1.add(new tab1_pager1_frame2());
+//            list1.add(new tab1_pager1_frame3());
+//            list1.add(new tab1_pager1_frame4());
+//            list1.add(new tab1_pager1_frame5());
+//            list1.add(new tab1_pager1_frame6());
+//
+//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager1.setAdapter(viewPagerAdapter1);
+//
+//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+//
+//            List<Fragment> list2 = new ArrayList<Fragment>();
+//            list2.add(new tab1_pager2_frame1());
+//            list2.add(new tab1_pager2_frame2());
+//            list2.add(new tab1_pager2_frame3());
+//            list2.add(new tab1_pager2_frame4());
+//
+//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+//            viewPager2.setAdapter(viewPagerAdapter2);
+//
+//            return linearLayout;
+//        }
+//    }
+//    public static class view_tab5 extends Fragment {
+//        private ViewPager viewPager1;
+//        private ViewPager viewPager2;
+//        public view_tab5(){
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+////            View view = inflater.inflate(R.layout.main_tab1, container, false);
+//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+//
+//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+//
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager1_frame1());
+//            list1.add(new tab1_pager1_frame2());
+//            list1.add(new tab1_pager1_frame3());
+//            list1.add(new tab1_pager1_frame4());
+//            list1.add(new tab1_pager1_frame5());
+//            list1.add(new tab1_pager1_frame6());
+//
+//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager1.setAdapter(viewPagerAdapter1);
+//
+//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+//
+//            List<Fragment> list2 = new ArrayList<Fragment>();
+//            list2.add(new tab1_pager2_frame1());
+//            list2.add(new tab1_pager2_frame2());
+//            list2.add(new tab1_pager2_frame3());
+//            list2.add(new tab1_pager2_frame4());
+//
+//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+//            viewPager2.setAdapter(viewPagerAdapter2);
+//
+//            return linearLayout;
+//        }
+//    }
+//    public static class view_tab6 extends Fragment {
+//        private ViewPager viewPager1;
+//        private ViewPager viewPager2;
+//        public view_tab6(){
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+////            View view = inflater.inflate(R.layout.main_tab1, container, false);
+//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+//
+//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+//
+//            List<Fragment> list1 = new ArrayList<Fragment>();
+//            list1.add(new tab1_pager1_frame1());
+//            list1.add(new tab1_pager1_frame2());
+//            list1.add(new tab1_pager1_frame3());
+//            list1.add(new tab1_pager1_frame4());
+//            list1.add(new tab1_pager1_frame5());
+//            list1.add(new tab1_pager1_frame6());
+//
+//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+//            viewPager1.setAdapter(viewPagerAdapter1);
+//
+//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+//
+//            List<Fragment> list2 = new ArrayList<Fragment>();
+//            list2.add(new tab1_pager2_frame1());
+//            list2.add(new tab1_pager2_frame2());
+//            list2.add(new tab1_pager2_frame3());
+//            list2.add(new tab1_pager2_frame4());
+//
+//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+//            viewPager2.setAdapter(viewPagerAdapter2);
+//
+//            return linearLayout;
+//        }
+//    }
 
-    public static class view_tab2 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
 
-        public view_tab2(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-
-            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-
-            List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
-
-            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-            viewPager1.setAdapter(viewPagerAdapter1);
-
-            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-
-            List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
-
-            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-            viewPager2.setAdapter(viewPagerAdapter2);
-
-            return linearLayout;
-        }
-    }
-
-    public static class view_tab3 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
-        public view_tab3(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-
-            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-
-            List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
-
-            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-            viewPager1.setAdapter(viewPagerAdapter1);
-
-            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-
-            List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
-
-            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-            viewPager2.setAdapter(viewPagerAdapter2);
-
-            return linearLayout;
-        }
-    }
-
-    public static class view_tab4 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
-        public view_tab4(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-
-            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-
-            List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
-
-            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-            viewPager1.setAdapter(viewPagerAdapter1);
-
-            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-
-            List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
-
-            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-            viewPager2.setAdapter(viewPagerAdapter2);
-
-            return linearLayout;
-        }
-    }
-
-    public static class view_tab5 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
-        public view_tab5(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-
-            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-
-            List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
-
-            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-            viewPager1.setAdapter(viewPagerAdapter1);
-
-            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-
-            List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
-
-            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-            viewPager2.setAdapter(viewPagerAdapter2);
-
-            return linearLayout;
-        }
-    }
-
-    public static class view_tab6 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
-        public view_tab6(){
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-
-            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-
-            List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
-
-            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-            viewPager1.setAdapter(viewPagerAdapter1);
-
-            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-
-            List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
-
-            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-            viewPager2.setAdapter(viewPagerAdapter2);
-
-            return linearLayout;
-        }
-    }
 }
