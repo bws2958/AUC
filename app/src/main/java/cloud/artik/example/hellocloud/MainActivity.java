@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cloud.artik.example.hellocloud.Util.CustomEditText;
+import cloud.artik.example.hellocloud.Util.Helper.FrameHelper;
 import cloud.artik.example.hellocloud.Util.ViewPagerAdapter;
 
 import static cloud.artik.example.hellocloud.Util.Config.SIGNIN;
@@ -186,13 +187,46 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
             viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
 
+//            List<FrameHelper> frameHelper = new ArrayList<FrameHelper>(6);
+            FrameHelper frameHelper1 = new FrameHelper();
+            FrameHelper frameHelper2 = new FrameHelper();
+            FrameHelper frameHelper3 = new FrameHelper();
+            FrameHelper frameHelper4 = new FrameHelper();
+            FrameHelper frameHelper5 = new FrameHelper();
+            FrameHelper frameHelper6 = new FrameHelper();
+
+            Bundle args1 = new Bundle();
+            Bundle args2 = new Bundle();
+            Bundle args3 = new Bundle();
+            Bundle args4 = new Bundle();
+            Bundle args5 = new Bundle();
+            Bundle args6 = new Bundle();
+
             List<Fragment> list1 = new ArrayList<Fragment>();
-            list1.add(new tab1_pager1_frame1());
-            list1.add(new tab1_pager1_frame2());
-            list1.add(new tab1_pager1_frame3());
-            list1.add(new tab1_pager1_frame4());
-            list1.add(new tab1_pager1_frame5());
-            list1.add(new tab1_pager1_frame6());
+
+            args1.putInt("param1", R.drawable.bean_noodle);
+            frameHelper1.setArguments(args1);
+            list1.add(frameHelper1);
+
+            args2.putInt("param1", R.drawable.solo_kimchi);
+            frameHelper2.setArguments(args2);
+            list1.add(frameHelper2);
+
+            args3.putInt("param1", R.drawable.green_juice);
+            frameHelper3.setArguments(args3);
+            list1.add(frameHelper3);
+
+            args4.putInt("param1", R.drawable.apple_jam);
+            frameHelper4.setArguments(args4);
+            list1.add(frameHelper4);
+
+            args5.putInt("param1", R.drawable.blue_blood);
+            frameHelper5.setArguments(args5);
+            list1.add(frameHelper5);
+
+            args6.putInt("param1", R.drawable.bit_lemon);
+            frameHelper6.setArguments(args6);
+            list1.add(frameHelper6);
 
             ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
             viewPager1.setAdapter(viewPagerAdapter1);
@@ -211,189 +245,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             return linearLayout;
         }
 
-        public static class tab1_pager1_frame1 extends Fragment {
-            Context context;
-            public tab1_pager1_frame1(){
-
-            }
-
-
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.bean_noodle);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=133");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.bean_noodle);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-                return linearLayout;
-            }
-        }
-        public static class tab1_pager1_frame2 extends Fragment {
-            public tab1_pager1_frame2() {
-
-            }
-
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.solo_kimchi);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=134");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.solo_kimchi);
-                return linearLayout;
-            }
-        }
-        public static class tab1_pager1_frame3 extends Fragment {
-            public tab1_pager1_frame3(){
-
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.green_juice);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=121&page=3");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.green_juice);
-                return linearLayout;
-            }
-        }
-        public static class tab1_pager1_frame4 extends Fragment {
-            public tab1_pager1_frame4(){
-
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.apple_jam);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=117&page=3");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.apple_jam);
-                return linearLayout;
-            }
-        }
-        public static class tab1_pager1_frame5 extends Fragment {
-            public tab1_pager1_frame5(){
-
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.blue_blood);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=115&page=3");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.blue_blood);
-                return linearLayout;
-            }
-        }
-        public static class tab1_pager1_frame6 extends Fragment {
-            public tab1_pager1_frame6(){
-
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-                ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-                imageView.setImageResource(R.drawable.bit_lemon);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Uri uri = Uri.parse("https://www.nuc.co.kr/community/bbs/board.php?bo_table=recipe&wr_id=113&page=3");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                });
-
-//        Button button = (Button) linearLayout.findViewById(R.id.seul_gii);
-//        button.setBackgroundResource(R.drawable.bit_lemon);
-                return linearLayout;
-            }
-        }
         public static class tab1_pager2_frame1 extends Fragment {
             public tab1_pager2_frame1(){
 
