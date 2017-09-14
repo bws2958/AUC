@@ -3,7 +3,6 @@ package cloud.artik.example.hellocloud;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 
@@ -36,10 +34,12 @@ import static cloud.artik.example.hellocloud.Util.Config.USER_DATA;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private static final String TAG = "MainActivity";
-    private static final int NUM_PAGES = 3;
     private ViewPager viewPager;
     private TabHost tabHost;
-    private static Context context;
+    private Context context;
+    private static ViewPager viewPager1;
+    private static ViewPager viewPager2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initCustomEditText();
         initViewPager();
         initTabHost();
-
     }
 
     private void initTabHost(){
@@ -99,11 +98,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         List<Fragment> list = new ArrayList<Fragment>();
         list.add(new view_tab1());
-//        list.add(new view_tab2());
-//        list.add(new view_tab3());
-//        list.add(new view_tab4());
-//        list.add(new view_tab5());
-//        list.add(new view_tab6());
+        list.add(new view_tab2());
+        list.add(new view_tab3());
+        list.add(new view_tab4());
+        list.add(new view_tab5());
+        list.add(new view_tab6());
 
         ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), list);
         viewPager.setAdapter(viewPagerAdapter1);
@@ -170,9 +169,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     public static class view_tab1 extends Fragment {
-        private ViewPager viewPager1;
-        private ViewPager viewPager2;
-        public view_tab1(){
+
+        public view_tab1() {
         }
 
         @Override
@@ -182,12 +180,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.main_tab1, container, false);
-            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab1, container, false);
 
             viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
 
-//            List<FrameHelper> frameHelper = new ArrayList<FrameHelper>(6);
             FrameHelper frameHelper1 = new FrameHelper();
             FrameHelper frameHelper2 = new FrameHelper();
             FrameHelper frameHelper3 = new FrameHelper();
@@ -233,309 +229,336 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
             viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
 
+            FrameHelper frameHelper7 = new FrameHelper();
+            FrameHelper frameHelper8 = new FrameHelper();
+            FrameHelper frameHelper9 = new FrameHelper();
+            FrameHelper frameHelper10 = new FrameHelper();
+
+            Bundle args7 = new Bundle();
+            Bundle args8 = new Bundle();
+            Bundle args9 = new Bundle();
+            Bundle args10 = new Bundle();
+
             List<Fragment> list2 = new ArrayList<Fragment>();
-            list2.add(new tab1_pager2_frame1());
-            list2.add(new tab1_pager2_frame2());
-            list2.add(new tab1_pager2_frame3());
-            list2.add(new tab1_pager2_frame4());
+
+            args7.putInt("param1", R.drawable.apple_deriyakki);
+            frameHelper7.setArguments(args7);
+            list2.add(frameHelper7);
+
+            args8.putInt("param1", R.drawable.mitball);
+            frameHelper8.setArguments(args8);
+            list2.add(frameHelper8);
+
+            args9.putInt("param1", R.drawable.seok_ryu);
+            frameHelper9.setArguments(args9);
+            list2.add(frameHelper9);
+
+            args10.putInt("param1", R.drawable.sujebi);
+            frameHelper10.setArguments(args10);
+            list2.add(frameHelper10);
 
             ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
             viewPager2.setAdapter(viewPagerAdapter2);
 
             return linearLayout;
         }
-
-        public static class tab1_pager2_frame1 extends Fragment {
-            public tab1_pager2_frame1(){
-
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-//        imageView.setImageResource(R.drawable.seul_gi);
-                return linearLayout;
-            }
+    }
+    public static class view_tab2 extends Fragment {
+        public view_tab2(){
         }
-        public static class tab1_pager2_frame2 extends Fragment {
-            public tab1_pager2_frame2(){
 
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
-
-//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-//        imageView.setImageResource(R.drawable.seul_gi);
-                return linearLayout;
-            }
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
         }
-        public static class tab1_pager2_frame3 extends Fragment {
-            public tab1_pager2_frame3(){
 
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab2, container, false);
 
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
 
-//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-//        imageView.setImageResource(R.drawable.seul_gi);
-                return linearLayout;
-            }
+            FrameHelper frameHelper1 = new FrameHelper();
+            FrameHelper frameHelper2 = new FrameHelper();
+            FrameHelper frameHelper3 = new FrameHelper();
+            FrameHelper frameHelper4 = new FrameHelper();
+            FrameHelper frameHelper5 = new FrameHelper();
+            FrameHelper frameHelper6 = new FrameHelper();
+
+            Bundle args1 = new Bundle();
+            Bundle args2 = new Bundle();
+            Bundle args3 = new Bundle();
+            Bundle args4 = new Bundle();
+            Bundle args5 = new Bundle();
+            Bundle args6 = new Bundle();
+
+            List<Fragment> list1 = new ArrayList<Fragment>();
+
+            args1.putInt("param1", R.drawable.cherry_piz);
+            frameHelper1.setArguments(args1);
+            list1.add(frameHelper1);
+
+            args2.putInt("param1", R.drawable.melon_icecream);
+            frameHelper2.setArguments(args2);
+            list1.add(frameHelper2);
+
+            args3.putInt("param1", R.drawable.green_yogurt);
+            frameHelper3.setArguments(args3);
+            list1.add(frameHelper3);
+
+            args4.putInt("param1", R.drawable.honey_grape);
+            frameHelper4.setArguments(args4);
+            list1.add(frameHelper4);
+
+            args5.putInt("param1", R.drawable.morning_detox);
+            frameHelper5.setArguments(args5);
+            list1.add(frameHelper5);
+
+            args6.putInt("param1", R.drawable.tomato_salad);
+            frameHelper6.setArguments(args6);
+            list1.add(frameHelper6);
+
+            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+            viewPager1.setAdapter(viewPagerAdapter1);
+
+            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+
+            FrameHelper frameHelper7 = new FrameHelper();
+            FrameHelper frameHelper8 = new FrameHelper();
+            FrameHelper frameHelper9 = new FrameHelper();
+            FrameHelper frameHelper10 = new FrameHelper();
+
+            Bundle args7 = new Bundle();
+            Bundle args8 = new Bundle();
+            Bundle args9 = new Bundle();
+            Bundle args10 = new Bundle();
+
+            List<Fragment> list2 = new ArrayList<Fragment>();
+
+            args7.putInt("param1", R.drawable.apple_deriyakki);
+            frameHelper7.setArguments(args7);
+            list2.add(frameHelper7);
+
+            args8.putInt("param1", R.drawable.mitball);
+            frameHelper8.setArguments(args8);
+            list2.add(frameHelper8);
+
+            args9.putInt("param1", R.drawable.seok_ryu);
+            frameHelper9.setArguments(args9);
+            list2.add(frameHelper9);
+
+            args10.putInt("param1", R.drawable.sujebi);
+            frameHelper10.setArguments(args10);
+            list2.add(frameHelper10);
+
+            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+            viewPager2.setAdapter(viewPagerAdapter2);
+
+            return linearLayout;
         }
-        public static class tab1_pager2_frame4 extends Fragment {
-            public tab1_pager2_frame4(){
+    }
+    public static class view_tab3 extends Fragment {
+        public view_tab3(){
+        }
 
-            }
-            @Override
-            public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
 
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.frame_imageview, container, false);
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab3, container, false);
 
-//        ImageView imageView = (ImageView) linearLayout.findViewById(R.id.seul_gii);
-//        imageView.setImageResource(R.drawable.seul_gi);
-                return linearLayout;
-            }
+            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+
+            FrameHelper frameHelper1 = new FrameHelper();
+            FrameHelper frameHelper2 = new FrameHelper();
+            FrameHelper frameHelper3 = new FrameHelper();
+            FrameHelper frameHelper4 = new FrameHelper();
+            FrameHelper frameHelper5 = new FrameHelper();
+            FrameHelper frameHelper6 = new FrameHelper();
+
+            Bundle args1 = new Bundle();
+            Bundle args2 = new Bundle();
+            Bundle args3 = new Bundle();
+            Bundle args4 = new Bundle();
+            Bundle args5 = new Bundle();
+            Bundle args6 = new Bundle();
+
+            List<Fragment> list1 = new ArrayList<Fragment>();
+
+            args1.putInt("param1", R.drawable.apple_sin);
+            frameHelper1.setArguments(args1);
+            list1.add(frameHelper1);
+
+            args2.putInt("param1", R.drawable.chajiki);
+            frameHelper2.setArguments(args2);
+            list1.add(frameHelper2);
+
+            args3.putInt("param1", R.drawable.fruit_greek_yogurt);
+            frameHelper3.setArguments(args3);
+            list1.add(frameHelper3);
+
+            args4.putInt("param1", R.drawable.greek_yogurt);
+            frameHelper4.setArguments(args4);
+            list1.add(frameHelper4);
+
+            args5.putInt("param1", R.drawable.home_cheeze);
+            frameHelper5.setArguments(args5);
+            list1.add(frameHelper5);
+
+            args6.putInt("param1", R.drawable.lemon);
+            frameHelper6.setArguments(args6);
+            list1.add(frameHelper6);
+
+            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+            viewPager1.setAdapter(viewPagerAdapter1);
+
+            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+
+            FrameHelper frameHelper7 = new FrameHelper();
+            FrameHelper frameHelper8 = new FrameHelper();
+            FrameHelper frameHelper9 = new FrameHelper();
+            FrameHelper frameHelper10 = new FrameHelper();
+
+            Bundle args7 = new Bundle();
+            Bundle args8 = new Bundle();
+            Bundle args9 = new Bundle();
+            Bundle args10 = new Bundle();
+
+            List<Fragment> list2 = new ArrayList<Fragment>();
+
+            args7.putInt("param1", R.drawable.apple_deriyakki);
+            frameHelper7.setArguments(args7);
+            list2.add(frameHelper7);
+
+            args8.putInt("param1", R.drawable.mitball);
+            frameHelper8.setArguments(args8);
+            list2.add(frameHelper8);
+
+            args9.putInt("param1", R.drawable.seok_ryu);
+            frameHelper9.setArguments(args9);
+            list2.add(frameHelper9);
+
+            args10.putInt("param1", R.drawable.sujebi);
+            frameHelper10.setArguments(args10);
+            list2.add(frameHelper10);
+
+            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+            viewPager2.setAdapter(viewPagerAdapter2);
+
+            return linearLayout;
+        }
+    }
+    public static class view_tab4 extends Fragment {
+        public view_tab4(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab4, container, false);
+
+            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
+
+            FrameHelper frameHelper1 = new FrameHelper();
+            FrameHelper frameHelper2 = new FrameHelper();
+            FrameHelper frameHelper3 = new FrameHelper();
+
+            Bundle args1 = new Bundle();
+            Bundle args2 = new Bundle();
+            Bundle args3 = new Bundle();
+
+            List<Fragment> list1 = new ArrayList<Fragment>();
+
+            args1.putInt("param1", R.drawable.chicken_stew);
+            frameHelper1.setArguments(args1);
+            list1.add(frameHelper1);
+
+            args2.putInt("param1", R.drawable.jinseng_tee);
+            frameHelper2.setArguments(args2);
+            list1.add(frameHelper2);
+
+            args3.putInt("param1", R.drawable.yangbaechu_jjim);
+            frameHelper3.setArguments(args3);
+            list1.add(frameHelper3);
+
+
+            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
+            viewPager1.setAdapter(viewPagerAdapter1);
+
+            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
+
+            FrameHelper frameHelper7 = new FrameHelper();
+            FrameHelper frameHelper8 = new FrameHelper();
+            FrameHelper frameHelper9 = new FrameHelper();
+            FrameHelper frameHelper10 = new FrameHelper();
+
+            Bundle args7 = new Bundle();
+            Bundle args8 = new Bundle();
+            Bundle args9 = new Bundle();
+            Bundle args10 = new Bundle();
+
+            List<Fragment> list2 = new ArrayList<Fragment>();
+
+            args7.putInt("param1", R.drawable.apple_deriyakki);
+            frameHelper7.setArguments(args7);
+            list2.add(frameHelper7);
+
+            args8.putInt("param1", R.drawable.mitball);
+            frameHelper8.setArguments(args8);
+            list2.add(frameHelper8);
+
+            args9.putInt("param1", R.drawable.seok_ryu);
+            frameHelper9.setArguments(args9);
+            list2.add(frameHelper9);
+
+            args10.putInt("param1", R.drawable.sujebi);
+            frameHelper10.setArguments(args10);
+            list2.add(frameHelper10);
+
+            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
+            viewPager2.setAdapter(viewPagerAdapter2);
+
+            return linearLayout;
+        }
+    }
+    public static class view_tab5 extends Fragment {
+        public view_tab5(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab5, container, false);
+
+
+            return linearLayout;
+        }        }
+    public static class view_tab6 extends Fragment {
+        public view_tab6(){
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.main_tab6, container, false);
+
+            return linearLayout;
         }
 
     }
-    //view_tab2~6
-//    public static class view_tab2 extends Fragment {
-//        private ViewPager viewPager1;
-//        private ViewPager viewPager2;
-//
-//        public view_tab2(){
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-////            View view = inflater.inflate(R.layout.main_tab1, container, false);
-//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-//
-//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-//
-//            List<Fragment> list1 = new ArrayList<Fragment>();
-//            list1.add(new tab1_pager1_frame1());
-//            list1.add(new tab1_pager1_frame2());
-//            list1.add(new tab1_pager1_frame3());
-//            list1.add(new tab1_pager1_frame4());
-//            list1.add(new tab1_pager1_frame5());
-//            list1.add(new tab1_pager1_frame6());
-//
-//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-//            viewPager1.setAdapter(viewPagerAdapter1);
-//
-//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-//
-//            List<Fragment> list2 = new ArrayList<Fragment>();
-//            list2.add(new tab1_pager2_frame1());
-//            list2.add(new tab1_pager2_frame2());
-//            list2.add(new tab1_pager2_frame3());
-//            list2.add(new tab1_pager2_frame4());
-//
-//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-//            viewPager2.setAdapter(viewPagerAdapter2);
-//
-//            return linearLayout;
-//        }
-//    }
-//    public static class view_tab3 extends Fragment {
-//        private ViewPager viewPager1;
-//        private ViewPager viewPager2;
-//        public view_tab3(){
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-////            View view = inflater.inflate(R.layout.main_tab1, container, false);
-//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-//
-//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-//
-//            List<Fragment> list1 = new ArrayList<Fragment>();
-//            list1.add(new tab1_pager1_frame1());
-//            list1.add(new tab1_pager1_frame2());
-//            list1.add(new tab1_pager1_frame3());
-//            list1.add(new tab1_pager1_frame4());
-//            list1.add(new tab1_pager1_frame5());
-//            list1.add(new tab1_pager1_frame6());
-//
-//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-//            viewPager1.setAdapter(viewPagerAdapter1);
-//
-//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-//
-//            List<Fragment> list2 = new ArrayList<Fragment>();
-//            list2.add(new tab1_pager2_frame1());
-//            list2.add(new tab1_pager2_frame2());
-//            list2.add(new tab1_pager2_frame3());
-//            list2.add(new tab1_pager2_frame4());
-//
-//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-//            viewPager2.setAdapter(viewPagerAdapter2);
-//
-//            return linearLayout;
-//        }
-//    }
-//    public static class view_tab4 extends Fragment {
-//        private ViewPager viewPager1;
-//        private ViewPager viewPager2;
-//        public view_tab4(){
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-////            View view = inflater.inflate(R.layout.main_tab1, container, false);
-//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-//
-//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-//
-//            List<Fragment> list1 = new ArrayList<Fragment>();
-//            list1.add(new tab1_pager1_frame1());
-//            list1.add(new tab1_pager1_frame2());
-//            list1.add(new tab1_pager1_frame3());
-//            list1.add(new tab1_pager1_frame4());
-//            list1.add(new tab1_pager1_frame5());
-//            list1.add(new tab1_pager1_frame6());
-//
-//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-//            viewPager1.setAdapter(viewPagerAdapter1);
-//
-//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-//
-//            List<Fragment> list2 = new ArrayList<Fragment>();
-//            list2.add(new tab1_pager2_frame1());
-//            list2.add(new tab1_pager2_frame2());
-//            list2.add(new tab1_pager2_frame3());
-//            list2.add(new tab1_pager2_frame4());
-//
-//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-//            viewPager2.setAdapter(viewPagerAdapter2);
-//
-//            return linearLayout;
-//        }
-//    }
-//    public static class view_tab5 extends Fragment {
-//        private ViewPager viewPager1;
-//        private ViewPager viewPager2;
-//        public view_tab5(){
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-////            View view = inflater.inflate(R.layout.main_tab1, container, false);
-//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-//
-//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-//
-//            List<Fragment> list1 = new ArrayList<Fragment>();
-//            list1.add(new tab1_pager1_frame1());
-//            list1.add(new tab1_pager1_frame2());
-//            list1.add(new tab1_pager1_frame3());
-//            list1.add(new tab1_pager1_frame4());
-//            list1.add(new tab1_pager1_frame5());
-//            list1.add(new tab1_pager1_frame6());
-//
-//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-//            viewPager1.setAdapter(viewPagerAdapter1);
-//
-//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-//
-//            List<Fragment> list2 = new ArrayList<Fragment>();
-//            list2.add(new tab1_pager2_frame1());
-//            list2.add(new tab1_pager2_frame2());
-//            list2.add(new tab1_pager2_frame3());
-//            list2.add(new tab1_pager2_frame4());
-//
-//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-//            viewPager2.setAdapter(viewPagerAdapter2);
-//
-//            return linearLayout;
-//        }
-//    }
-//    public static class view_tab6 extends Fragment {
-//        private ViewPager viewPager1;
-//        private ViewPager viewPager2;
-//        public view_tab6(){
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-////            View view = inflater.inflate(R.layout.main_tab1, container, false);
-//            LinearLayout linearLayout = (LinearLayout)inflater.inflate(R.layout.main_tab1, container, false);
-//
-//            viewPager1 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager1);
-//
-//            List<Fragment> list1 = new ArrayList<Fragment>();
-//            list1.add(new tab1_pager1_frame1());
-//            list1.add(new tab1_pager1_frame2());
-//            list1.add(new tab1_pager1_frame3());
-//            list1.add(new tab1_pager1_frame4());
-//            list1.add(new tab1_pager1_frame5());
-//            list1.add(new tab1_pager1_frame6());
-//
-//            ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getChildFragmentManager(), list1);
-//            viewPager1.setAdapter(viewPagerAdapter1);
-//
-//            viewPager2 = (ViewPager) linearLayout.findViewById(R.id.main_viewpager2);
-//
-//            List<Fragment> list2 = new ArrayList<Fragment>();
-//            list2.add(new tab1_pager2_frame1());
-//            list2.add(new tab1_pager2_frame2());
-//            list2.add(new tab1_pager2_frame3());
-//            list2.add(new tab1_pager2_frame4());
-//
-//            ViewPagerAdapter viewPagerAdapter2 = new ViewPagerAdapter(getChildFragmentManager(), list2);
-//            viewPager2.setAdapter(viewPagerAdapter2);
-//
-//            return linearLayout;
-//        }
-//    }
-
-
 }
