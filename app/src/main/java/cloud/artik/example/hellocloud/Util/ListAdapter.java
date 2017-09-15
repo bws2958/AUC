@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import cloud.artik.example.hellocloud.R;
 
 /**
  * Created by HMS on 2017-08-27.
@@ -15,9 +18,9 @@ import java.util.ArrayList;
 public class ListAdapter extends BaseAdapter {
     Context context;
     int layout;
-    ArrayList<CustomViewPagerList> list;
+    ArrayList<CustomList> list;
     LayoutInflater inflater;
-    public ListAdapter(Context context, int layout, ArrayList<CustomViewPagerList> list){
+    public ListAdapter(Context context, int layout, ArrayList<CustomList> list){
         this.context = context;
         this.layout = layout;
         this.list = list;
@@ -41,6 +44,9 @@ public class ListAdapter extends BaseAdapter {
         if(view == null){
             view = inflater.inflate(layout, null);
         }
+        TextView textView = (TextView)view.findViewById(R.id.main_after_left_textView1);
+        CustomList customList = list.get(position);
+        textView.setText(customList.getContent1());
         return view;
     }
 }
