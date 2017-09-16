@@ -8,6 +8,14 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
 
+import java.util.List;
+
+import cloud.artik.example.hellocloud.Util.Retrofit.Response.Recipe;
+import cloud.artik.example.hellocloud.Util.Retrofit.RestfulAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static cloud.artik.example.hellocloud.Util.Config.ACCESS_TOKEN;
 import static cloud.artik.example.hellocloud.Util.Config.DEVICE_ID_LIST;
 import static cloud.artik.example.hellocloud.Util.Config.EMAIL;
@@ -53,6 +61,27 @@ public class SplashActivity extends Activity {
             }else{
                 Log.d(TAG, "Signin false");
             }
+            Call<Recipe> call = RestfulAdapter.getInstance().getRecipe();
+            call.enqueue(new Callback<Recipe>() {
+                @Override
+                public void onResponse(Call<Recipe> call, Response<Recipe> response) {
+                    Recipe recipe = response.body();
+
+                    List<Recipe.Data> data = recipe.getData();
+                    for(int i=0; i<data.size(); i++){
+                        Log.d(TAG, data.get(i).getContent());
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Recipe> call, Throwable t) {
+
+                }
+            });
+
+
 
             Intent intent1 = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent1);
